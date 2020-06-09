@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="STUDENT LOGIN"
+            android:text="ADMIN LOGIN"
             android:layout_below="@+id/logo"
             android:id="@+id/head"
             android:layout_centerHorizontal="true"
@@ -70,27 +70,6 @@
                 android:layout_below="@id/password"
                 android:layout_marginRight="10dp"
                 />
-<!--            <Button-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="LOGIN TEACHER"-->
-<!--                android:id="@+id/btnLoginTeacher"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:background="#8CE68A"-->
-<!--                android:layout_below="@id/password"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                />-->
-<!--            <Button-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="LOGIN ADMIN"-->
-<!--                android:id="@+id/btnLoginAdmin"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:background="#8CE68A"-->
-<!--                android:layout_below="@id/password"-->
-<!--                />-->
 
         </LinearLayout>
         <LinearLayout
@@ -100,13 +79,12 @@
             android:layout_below="@id/password"
             android:layout_marginTop="80dp"
             android:weightSum="2">
-
             <Button
                 android:id="@+id/btnSignup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/password"
-                android:text="Doesn't have an account? \nSIGNUP"
+                android:text="Doesn't have an account? \n SIGNUP"
                 android:layout_centerHorizontal="true"
                 />
         </LinearLayout>

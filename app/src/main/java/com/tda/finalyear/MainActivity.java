@@ -7,23 +7,46 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.tda.finalyear.activities.student.StudentLoginActivity;
 import com.tda.finalyear.activities.student.StudentSignupActivity;
+import com.tda.finalyear.activities.teacher.TeacherLoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signupButton;
+    Button studentBtn, teacherBtn, adminBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        signupButton = findViewById(R.id.SignUpBtn);
-        signupButton.setOnClickListener(new View.OnClickListener() {
+        bind();
+        studentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StudentSignupActivity.class);
+                Intent intent = new Intent(MainActivity.this, StudentLoginActivity.class);
                 startActivity(intent);
             }
         });
+        teacherBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TeacherLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        adminBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TeacherLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    // bind
+    public void bind(){
+        studentBtn = findViewById(R.id.studentBtn);
+        teacherBtn = findViewById(R.id.teacherBtn);
+        adminBtn = findViewById(R.id.adminBtn);
     }
 
 }

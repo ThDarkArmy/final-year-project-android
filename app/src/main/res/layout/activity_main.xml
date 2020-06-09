@@ -11,25 +11,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:weightSum="0.7"
+        android:weightSum="1"
         android:orientation="vertical"
+        android:layout_alignParentBottom="true"
         tools:ignore="MissingConstraints">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_weight="2"
-            android:background="@color/colorPrimary"
-            >
 
-        </ImageView>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:text="signup or login"
-            android:id="@+id/SignUpBtn"
+            android:text="Student"
+            android:id="@+id/studentBtn"
             android:textSize="30dp"
             android:background="#8CE68A"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Teacher"
+            android:id="@+id/teacherBtn"
+            android:textSize="30dp"
+            android:background="#8CE68A"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="admin"
+            android:id="@+id/adminBtn"
+            android:textSize="30dp"
+            android:background="#8CE68A"
+            android:layout_marginBottom="10dp"
             />
     </LinearLayout>
 

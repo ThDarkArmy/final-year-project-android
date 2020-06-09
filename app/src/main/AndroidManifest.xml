@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.student.StudentActivity"></activity>
+        <activity android:name=".activities.admin.AdminActivity"></activity>
+        <activity android:name=".activities.admin.AdminSignupActivity" />
+        <activity android:name=".activities.admin.AdminLoginActivity" />
+        <activity android:name=".activities.teacher.TeacherActivity" />
+        <activity android:name=".activities.teacher.TeacherSignupActivity" />
+        <activity android:name=".activities.teacher.TeacherLoginActivity" />
+        <activity android:name=".activities.student.StudentActivity" />
         <activity android:name=".activities.student.StudentSignupActivity" />
         <activity android:name=".activities.student.StudentLoginActivity" />
         <activity android:name=".MainActivity">

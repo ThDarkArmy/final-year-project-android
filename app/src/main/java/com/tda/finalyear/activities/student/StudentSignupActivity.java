@@ -30,8 +30,6 @@ import retrofit2.Response;
 public class StudentSignupActivity extends AppCompatActivity {
     EditText name,email,password,confirmPassword,roll, mobile,std;
     Button SignUpBtn,LoginBtn;
-    RadioButton StudentRB,TeacherRB,AdminRB;
-    RadioGroup DesignationRG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +50,7 @@ public class StudentSignupActivity extends AppCompatActivity {
             }
         });
     }
-    public boolean validation()
-    {
+    public boolean validation() {
         if(password.getText().toString().trim().equals(confirmPassword.getText().toString().trim())){
             return true;
         }
@@ -62,21 +59,8 @@ public class StudentSignupActivity extends AppCompatActivity {
 
     public void SignUp(){
 
-        String type="";
-        if(StudentRB.isChecked()) {
-            type="Student";
-        }
-        else if(TeacherRB.isChecked()) {
-            type="Teacher";
-        }
-        else if(AdminRB.isChecked()) {
-            type="Admin";
-        }
-        final String TYPE=type;
-
         if(validation()){
             Student student = new Student(name.getText().toString(), std.getText().toString(), roll.getText().toString(), email.getText().toString(), mobile.getText().toString(),password.getText().toString());
-            if(TYPE=="Student"){
                 Call<ResponseBody> call = RetrofitClient.getInstance()
                         .getStudentService()
                         .signUpStudent(student);
@@ -111,7 +95,6 @@ public class StudentSignupActivity extends AppCompatActivity {
                         Toast.makeText(StudentSignupActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
         }else{
             Toast.makeText(this.getApplicationContext(),"Password are not matching.",Toast.LENGTH_SHORT).show();
         }
@@ -127,12 +110,8 @@ public class StudentSignupActivity extends AppCompatActivity {
         mobile = findViewById(R.id.mobile);
         std = findViewById(R.id.std);
         password=findViewById(R.id.signupPassword);
-        confirmPassword=findViewById(R.id.signupConfirmPassword);
+        confirmPassword=findViewById(R.id.confirmPassword);
         SignUpBtn=findViewById(R.id.SignUpBtn);
         LoginBtn=findViewById(R.id.LoginBtn);
-        DesignationRG=findViewById(R.id.DesignationRG);
-        StudentRB=findViewById(R.id.StudentRB);
-        TeacherRB=findViewById(R.id.TeacherRB);
-        AdminRB=findViewById(R.id.AdminRB);
     }
 }

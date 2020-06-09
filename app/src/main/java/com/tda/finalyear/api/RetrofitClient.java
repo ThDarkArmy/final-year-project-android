@@ -1,6 +1,8 @@
 package com.tda.finalyear.api;
 
+import com.tda.finalyear.services.AdminService;
 import com.tda.finalyear.services.StudentService;
+import com.tda.finalyear.services.TeacherService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,5 +28,13 @@ public class RetrofitClient {
 
     public StudentService getStudentService(){
         return retrofit.create(StudentService.class);
+    }
+
+    public TeacherService getTeacherService() {
+        return retrofit.create(TeacherService.class);
+    }
+
+    public AdminService getAdminService(){
+        return retrofit.create(AdminService.class);
     }
 }
