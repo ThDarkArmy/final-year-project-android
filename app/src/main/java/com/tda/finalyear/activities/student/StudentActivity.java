@@ -1,4 +1,4 @@
-package com.tda.finalyear.activities;
+package com.tda.finalyear.activities.student;
 
 import androidx.appcompat.app.AppCompatActivity;
 
