@@ -40,7 +40,7 @@ public class AddHolidayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addHolidayToDatabase();
-                //startActivity(new Intent(AddHolidayActivity.this, HolidayListActivity.class));
+                startActivity(new Intent(AddHolidayActivity.this, HolidayListActivity.class));
             }
         });
 
