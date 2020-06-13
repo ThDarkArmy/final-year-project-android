@@ -10,14 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.holiday.EditHolidayActivity;
 import com.tda.finalyear.activities.holiday.HolidayActivity;
-import com.tda.finalyear.activities.holiday.HolidayListActivity;
 import com.tda.finalyear.api.RetrofitClient;
-import com.tda.finalyear.models.Holiday;
 import com.tda.finalyear.models.HolidayList;
 
 import okhttp3.ResponseBody;
@@ -29,10 +28,12 @@ import retrofit2.Response;
 public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.HolidayViewHolder> {
     Context context;
     private HolidayList holidays;
+    ConstraintLayout mainLayout;
 
     public HolidayAdapter(Context context, HolidayList holidays) {
         this.context = (Context) context;
         this.holidays = holidays;
+
     }
 
     @NonNull
@@ -44,52 +45,72 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.HolidayV
 
     @Override
     public void onBindViewHolder(@NonNull HolidayViewHolder holder, int position) {
-        holder.title.setText(holidays.getHolidays().get(position).getTitle());
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(context, EditHolidayActivity.class);
-                i.putExtra("HOLIDAY_ID",holidays.getHolidays().get(position).getId());
-                i.putExtra("HOLIDAY_DESCRIPTION",holidays.getHolidays().get(position).getDescription());
-                i.putExtra("HOLIDAY_DURATION",holidays.getHolidays().get(position).getDuration());
-                i.putExtra("HOLIDAY_TITLE",holidays.getHolidays().get(position).getTitle());
-                i.putExtra("HOLIDAY_START_DATE",holidays.getHolidays().get(position).getStartDate());
-                context.startActivity(i);
-            }
-        });
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RetrofitClient.getInstance().getHolidayService().deleteHoliday(holidays.getHolidays().get(position).getId()).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.isSuccessful()){
-                            holidays.getHolidays().remove(position);
-                            notifyDataSetChanged();
+            holder.title.setText(holidays.getHolidays().get(position).getTitle());
+            holder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, EditHolidayActivity.class);
+                    i.putExtra("HOLIDAY_ID", holidays.getHolidays().get(position).getId());
+                    i.putExtra("HOLIDAY_DESCRIPTION", holidays.getHolidays().get(position).getDescription());
+                    i.putExtra("HOLIDAY_DURATION", holidays.getHolidays().get(position).getDuration());
+                    i.putExtra("HOLIDAY_TITLE", holidays.getHolidays().get(position).getTitle());
+                    i.putExtra("HOLIDAY_START_DATE", holidays.getHolidays().get(position).getStartDate());
+                    context.startActivity(i);
+                }
+            });
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RetrofitClient.getInstance().getHolidayService().deleteHoliday(holidays.getHolidays().get(position).getId()).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                holidays.getHolidays().remove(position);
+                                notifyDataSetChanged();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(context, "Delete Unsuccessful", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(context, "Delete Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+
+            mainLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HolidayActivity.class);
+                    intent.putExtra("HOLIDAY_ID", holidays.getHolidays().get(position).getId());
+                    intent.putExtra("HOLIDAY_DESCRIPTION", holidays.getHolidays().get(position).getDescription());
+                    intent.putExtra("HOLIDAY_DURATION", holidays.getHolidays().get(position).getDuration());
+                    intent.putExtra("HOLIDAY_TITLE", holidays.getHolidays().get(position).getTitle());
+                    intent.putExtra("HOLIDAY_START_DATE", holidays.getHolidays().get(position).getStartDate());
+                    context.startActivity(intent);
+                }
+            });
+
+
     }
 
     @Override
     public int getItemCount() {
+
         return holidays.getHolidays().size();
     }
 
     public class HolidayViewHolder extends RecyclerView.ViewHolder {
-        TextView title; Button edit,delete;
+        TextView title;
+        Button edit, delete;
+
         public HolidayViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.card_holiday_title);
-            edit = itemView.findViewById(R.id.editHoliday);
-            delete = itemView.findViewById(R.id.deleteHoliday);
+                title = itemView.findViewById(R.id.card_holiday_title);
+                edit = itemView.findViewById(R.id.editHoliday);
+                delete = itemView.findViewById(R.id.deleteHoliday);
+                mainLayout = itemView.findViewById(R.id.holiday_card);
         }
     }
+
 }

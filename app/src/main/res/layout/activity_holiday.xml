@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.holiday.HolidayActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/holiday_title"
+        android:text="Holiday Tilte"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#5c5d5e" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/holiday_date"
+        android:text="Holiday Start Date"
+        android:textSize="25dp"
+        android:padding="10dp">
+
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#5c5d5e" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/holiday_duration"
+        android:text="Holiday Duration"
+        android:textSize="25dp"
+        android:padding="10dp">
+
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#5c5d5e" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/holiday_desc"
+        android:text="Holiday Description"
+        android:textSize="25dp"
+        android:padding="10dp">
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#5c5d5e" />
+
+</LinearLayout>
