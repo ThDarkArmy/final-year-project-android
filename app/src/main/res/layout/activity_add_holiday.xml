@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/holidaydesc">
+            android:layout_below="@id/holiday_desc">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

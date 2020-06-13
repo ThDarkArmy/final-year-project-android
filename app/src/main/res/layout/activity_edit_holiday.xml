@@ -63,7 +63,7 @@
             >
         </EditText>
         <EditText
-            android:id="@+id/holidaydesc"
+            android:id="@+id/holiday_desc"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Description"
@@ -83,7 +83,7 @@
             android:id="@+id/updateholiday"
             android:layout_centerHorizontal="true"
             android:background="#8CE68A"
-            android:layout_below="@id/holidaydesc"
+            android:layout_below="@id/holiday_desc"
             android:paddingTop="0dp"
             android:textSize="20dp"
             android:layout_marginTop="2dp"
