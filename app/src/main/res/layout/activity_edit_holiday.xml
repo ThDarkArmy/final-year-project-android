@@ -71,7 +71,7 @@
             android:paddingTop="20dp"
             android:lines="10"
             android:gravity="top"
-            android:minLines="5"
+            android:minLines="3"
             android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
             >
         </EditText>
