@@ -1,4 +1,4 @@
-package com.tda.finalyear.activities.notification;
+package com.tda.finalyear.activities.notice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,12 @@ import android.view.Window;
 
 import com.tda.finalyear.R;
 
-public class AddNotificationActivity extends AppCompatActivity {
+public class EditNoticeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_notification);
+        setContentView(R.layout.activity_edit_notification);
     }
 }

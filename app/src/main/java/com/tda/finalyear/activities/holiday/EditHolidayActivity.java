@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -54,11 +55,11 @@ public class EditHolidayActivity extends AppCompatActivity {
         holidayTitleEditText.setText(holidayTitle);
 
         editHolidayButton.setOnClickListener(new View.OnClickListener() {
-            LocalDate date = LocalDate.parse(holidayStartDateEditText.getText().toString());
-            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("DD/MM/YYYY");
-            Holiday holiday =  new Holiday(holidayTitleEditText.getText().toString(),formatDate.format(date),Integer.parseInt(holidayDurationEditText.getText().toString()),holidayDescriptionEditText.getText().toString());
+
+
             @Override
             public void onClick(View v) {
+                Holiday holiday =  new Holiday(holidayTitleEditText.getText().toString(),holidayStartDateEditText.getText().toString(),Integer.parseInt(holidayDurationEditText.getText().toString()),holidayDescriptionEditText.getText().toString());
                 RetrofitClient.getInstance().getHolidayService().editHoliday(holidayId,holiday).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ScrollViewEditHoliday"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:scrollbars="vertical">
 
     <LinearLayout
@@ -71,7 +71,7 @@
             android:paddingTop="20dp"
             android:lines="10"
             android:gravity="top"
-            android:minLines="3"
+            android:minLines="5"
             android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
             >
         </EditText>
@@ -86,9 +86,19 @@
             android:layout_below="@id/holiday_desc"
             android:paddingTop="0dp"
             android:textSize="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="2dp"
             />
-
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BACK TO HOLIDAYS"
+            android:id="@+id/view_holidays"
+            android:layout_centerHorizontal="true"
+            android:background="#8CE68A"
+            android:paddingTop="1dp"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            />
     </LinearLayout>
 </ScrollView>

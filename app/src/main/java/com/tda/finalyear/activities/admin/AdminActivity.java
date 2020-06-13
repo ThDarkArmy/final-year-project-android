@@ -21,7 +21,7 @@ import com.tda.finalyear.activities.event.AddEventActivity;
 import com.tda.finalyear.activities.exam.AddExamActivity;
 import com.tda.finalyear.activities.fee.AddFeeActivity;
 import com.tda.finalyear.activities.holiday.AddHolidayActivity;
-import com.tda.finalyear.activities.notification.AddNotificationActivity;
+import com.tda.finalyear.activities.notice.AddNoticeActivity;
 import com.tda.finalyear.activities.school.AboutSchoolActivity;
 import com.tda.finalyear.activities.student.StudentsListActivity;
 import com.tda.finalyear.activities.teacher.TeachersListActivity;
@@ -67,7 +67,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         addNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, AddNotificationActivity.class));
+                startActivity(new Intent(AdminActivity.this, AddNoticeActivity.class));
             }
         });
         addEvent.setOnClickListener(new View.OnClickListener() {
