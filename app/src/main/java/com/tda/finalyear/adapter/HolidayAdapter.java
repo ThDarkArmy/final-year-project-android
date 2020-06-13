@@ -64,6 +64,7 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.HolidayV
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.isSuccessful()){
                             holidays.getHolidays().remove(position);
+                            notifyDataSetChanged();
                         }
                     }
 
