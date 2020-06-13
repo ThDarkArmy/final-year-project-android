@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".activities.student.StudentSignupActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        >
+    android:layout_height="match_parent"
+    tools:context=".activities.student.StudentSignupActivity"
+    android:orientation="vertical">
 
         <ImageView
             android:layout_width="110dp"
@@ -20,24 +15,35 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:id="@+id/logo"
+            android:layout_gravity="center"
+
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="STUDENT SIGN UP"
-            android:layout_below="@+id/logo"
             android:id="@+id/head"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#AA3434"
             android:layout_marginBottom="20dp"
+            android:layout_marginTop="8dp"
             />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:orientation="vertical"
+            android:padding="20dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/head"
             android:hint="Name"
             android:id="@+id/signupName"
             />
@@ -45,7 +51,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/signupName"
             android:hint="Email ID"
             android:id="@+id/signupEmail"
             android:inputType="textEmailAddress"
@@ -53,21 +58,18 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/signupEmail"
             android:hint="Class"
             android:id="@+id/std"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/std"
             android:hint="Roll No."
             android:id="@+id/roll"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/roll"
             android:hint="Mobile"
             android:id="@+id/mobile"
             />
@@ -75,7 +77,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mobile"
             android:hint="Password"
             android:id="@+id/signupPassword"
             android:inputType="textPassword"
@@ -84,69 +85,36 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/signupPassword"
             android:hint="Confirm Password"
             android:id="@+id/confirmPassword"
             android:inputType="textPassword"
             />
+        </LinearLayout>
 
-<!--            <RadioGroup-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:weightSum="3"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:id="@+id/DesignationRG"-->
-<!--            android:layout_below="@+id/signupConfirmPassword">-->
-
-<!--            <RadioButton-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/StudentRB"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="Student"/>-->
-
-<!--            <RadioButton-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/TeacherRB"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="Teacher"/>-->
-
-<!--            <RadioButton-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/AdminRB"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="Admin"/>-->
-
-<!--        </RadioGroup>-->
+    </ScrollView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/confirmPassword"
+            android:layout_height="match_parent"
             android:padding="15dp"
-            android:weightSum="2"
             android:orientation="vertical">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="signup"
-                android:layout_weight="1"
                 android:id="@+id/SignUpBtn"
-                android:background="#8CE68A"
+                android:background="@android:color/transparent"
                 />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Already have an Account? \n Login"
-                android:layout_weight="1"
+                android:layout_gravity="bottom"
                 android:id="@+id/LoginBtn"
+                android:background="@android:color/transparent"
                 />
 
         </LinearLayout>
-    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

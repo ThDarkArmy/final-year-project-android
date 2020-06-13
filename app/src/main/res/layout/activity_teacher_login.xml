@@ -70,27 +70,6 @@
                 android:layout_below="@id/password"
                 android:layout_marginRight="10dp"
                 />
-            <!--            <Button-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:text="LOGIN TEACHER"-->
-            <!--                android:id="@+id/btnLoginTeacher"-->
-            <!--                android:layout_centerHorizontal="true"-->
-            <!--                android:background="#8CE68A"-->
-            <!--                android:layout_below="@id/password"-->
-            <!--                android:layout_marginRight="10dp"-->
-            <!--                />-->
-            <!--            <Button-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:text="LOGIN ADMIN"-->
-            <!--                android:id="@+id/btnLoginAdmin"-->
-            <!--                android:layout_centerHorizontal="true"-->
-            <!--                android:background="#8CE68A"-->
-            <!--                android:layout_below="@id/password"-->
-            <!--                />-->
 
         </LinearLayout>
         <LinearLayout
