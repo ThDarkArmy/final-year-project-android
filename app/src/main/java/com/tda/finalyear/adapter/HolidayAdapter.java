@@ -54,6 +54,7 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.HolidayV
                 i.putExtra("HOLIDAY_DURATION",holidays.getHolidays().get(position).getDuration());
                 i.putExtra("HOLIDAY_TITLE",holidays.getHolidays().get(position).getTitle());
                 i.putExtra("HOLIDAY_START_DATE",holidays.getHolidays().get(position).getStartDate());
+                context.startActivity(i);
             }
         });
         holder.delete.setOnClickListener(new View.OnClickListener() {
