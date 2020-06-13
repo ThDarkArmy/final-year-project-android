@@ -71,14 +71,15 @@
             android:paddingTop="20dp"
             android:lines="10"
             android:gravity="top"
-            android:minLines="5"
+            android:minLines="3"
             >
         </EditText>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/holiday_desc">
+            android:layout_below="@id/holiday_desc"
+            android:layout_marginTop="10dp">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
