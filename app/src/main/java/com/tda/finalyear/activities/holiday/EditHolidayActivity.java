@@ -1,8 +1,10 @@
 package com.tda.finalyear.activities.holiday;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -14,6 +16,9 @@ import com.tda.finalyear.R;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.Holiday;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
@@ -25,6 +30,7 @@ public class EditHolidayActivity extends AppCompatActivity {
 
     private EditText holidayTitleEditText,holidayDescriptionEditText,holidayStartDateEditText,holidayDurationEditText;
     Button editHolidayButton;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -48,13 +54,16 @@ public class EditHolidayActivity extends AppCompatActivity {
         holidayTitleEditText.setText(holidayTitle);
 
         editHolidayButton.setOnClickListener(new View.OnClickListener() {
-            Holiday holiday =  new Holiday(holidayTitleEditText.getText().toString(),holidayStartDateEditText.getText().toString(),Integer.parseInt(holidayDurationEditText.getText().toString()),holidayDescriptionEditText.getText().toString());
+            LocalDate date = LocalDate.parse(holidayStartDateEditText.getText().toString());
+            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("DD/MM/YYYY");
+            Holiday holiday =  new Holiday(holidayTitleEditText.getText().toString(),formatDate.format(date),Integer.parseInt(holidayDurationEditText.getText().toString()),holidayDescriptionEditText.getText().toString());
             @Override
             public void onClick(View v) {
                 RetrofitClient.getInstance().getHolidayService().editHoliday(holidayId,holiday).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        startActivity(new Intent(getApplicationContext(),HolidayListActivity.class));
+                        if(response.isSuccessful())
+                            startActivity(new Intent(getApplicationContext(),HolidayListActivity.class));
                     }
 
                     @Override
