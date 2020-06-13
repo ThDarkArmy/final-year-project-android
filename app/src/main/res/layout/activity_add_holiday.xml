@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollViewAddHoliday"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:src="@drawable/ss"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/logo"
+            />
+        <TextView
+            android:id="@+id/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Add Holiday"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="15pt">
+        </TextView>
+
+        <EditText
+            android:id="@+id/holidaytitle"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Holiday Title"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:paddingTop="30dp"
+            android:inputType="text"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/holidaydate"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Start Date"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+            android:inputType="date"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/holidayduration"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Duration"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+            android:inputType="text"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/holiday_desc"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Description"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+            android:lines="10"
+            android:gravity="top"
+            android:minLines="5"
+            >
+        </EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/holidaydesc">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ADD HOLIDAY"
+            android:id="@+id/addholiday"
+            android:layout_centerHorizontal="true"
+            android:background="#8CE68A"
+            android:paddingTop="0dp"
+            android:textSize="20dp"
+            android:layout_marginTop="2dp"
+            />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HOLIDAY LIST"
+                android:id="@+id/view_holiday_list"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorAccent"
+                android:layout_marginLeft="4dp"
+                android:paddingTop="0dp"
+                android:textSize="20dp"
+                android:layout_marginTop="2dp"
+                />
+        </LinearLayout>
+        <!--Put form controls here-->
+
+    </LinearLayout>
+</ScrollView>

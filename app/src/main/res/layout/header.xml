@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@mipmap/nav_header_back"
+    android:gravity="bottom"
+    android:orientation="vertical">
+<!--    <ImageView-->
+<!--        android:layout_width="75dp"-->
+<!--        android:layout_height="75dp"-->
+<!--        android:src=""-->
+<!--        tools:ignore="MissingConstraints"></ImageView>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nav_header_name"
+        android:text="Dark Army"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"
+        >
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nav_header_email"
+        android:text="dark@army.com"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp">
+    </TextView>
+
+</LinearLayout>

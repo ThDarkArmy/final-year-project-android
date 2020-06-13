@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class AdminLoginActivity extends AppCompatActivity {
     Button btnLogin, btnSignup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
         bind();
@@ -73,17 +75,20 @@ public class AdminLoginActivity extends AppCompatActivity {
                             Toast.makeText(AdminLoginActivity.this, mError.getMsg(), Toast.LENGTH_LONG).show();
                         } catch (IOException e) {
                             Toast.makeText(AdminLoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            Log.i("loginadmin", e.getMessage());
                         }
                     }
                 }catch(Exception e){
                     e.printStackTrace();
                     Toast.makeText(AdminLoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.i("loginadmin", e.getMessage());
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Toast.makeText(AdminLoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.i("loginadmin", t.getMessage());
             }
         });
     }

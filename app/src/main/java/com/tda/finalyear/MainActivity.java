@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.tda.finalyear.activities.admin.AdminLoginActivity;
 import com.tda.finalyear.activities.student.StudentLoginActivity;
 import com.tda.finalyear.activities.student.StudentSignupActivity;
 import com.tda.finalyear.activities.teacher.TeacherLoginActivity;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         adminBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TeacherLoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, AdminLoginActivity.class);
                 startActivity(intent);
             }
         });

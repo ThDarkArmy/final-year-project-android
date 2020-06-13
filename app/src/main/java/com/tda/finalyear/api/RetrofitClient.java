@@ -1,6 +1,8 @@
 package com.tda.finalyear.api;
 
 import com.tda.finalyear.services.AdminService;
+import com.tda.finalyear.services.EventService;
+import com.tda.finalyear.services.HolidayService;
 import com.tda.finalyear.services.StudentService;
 import com.tda.finalyear.services.TeacherService;
 
@@ -37,4 +39,8 @@ public class RetrofitClient {
     public AdminService getAdminService(){
         return retrofit.create(AdminService.class);
     }
+
+    public HolidayService getHolidayService(){ return retrofit.create(HolidayService.class);}
+
+    public EventService getEventService(){ return retrofit.create(EventService.class); }
 }

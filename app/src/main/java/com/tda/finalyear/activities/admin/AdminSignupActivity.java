@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,10 +14,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
-import com.tda.finalyear.activities.student.StudentSignupActivity;
-import com.tda.finalyear.activities.teacher.TeacherActivity;
-import com.tda.finalyear.activities.teacher.TeacherLoginActivity;
-import com.tda.finalyear.activities.teacher.TeacherSignupActivity;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.Admin;
 import com.tda.finalyear.models.ErrorPojo;
@@ -34,6 +31,7 @@ public class AdminSignupActivity extends AppCompatActivity {
     Button SignUpBtn,LoginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_signup);
         bind();

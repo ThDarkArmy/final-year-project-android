@@ -4,17 +4,17 @@ public class Admin {
     private String name;
     private String email;
     private String mobile;
-    private String schoolName;
+    private String school;
     private String password;
 
     public Admin() {
     }
 
-    public Admin(String name, String email, String mobile, String schoolName, String password) {
+    public Admin(String name, String email, String mobile, String school, String password) {
         this.name = name;
         this.email = email;
         this.mobile = mobile;
-        this.schoolName = schoolName;
+        this.school = school;
         this.password = password;
     }
 
@@ -42,12 +42,12 @@ public class Admin {
         this.mobile = mobile;
     }
 
-    public String getSchoolName() {
-        return schoolName;
+    public String getSchool() {
+        return school;
     }
 
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
+    public void setSchool(String school) {
+        this.school = school;
     }
 
     public String getPassword() {
