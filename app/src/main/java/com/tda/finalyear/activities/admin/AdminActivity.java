@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.event.AddEventActivity;
 import com.tda.finalyear.activities.exam.AddExamActivity;
+import com.tda.finalyear.activities.facility.AddFacilityActivity;
 import com.tda.finalyear.activities.fee.AddFeeActivity;
 import com.tda.finalyear.activities.holiday.AddHolidayActivity;
 import com.tda.finalyear.activities.notice.AddNoticeActivity;
@@ -27,7 +28,7 @@ import com.tda.finalyear.activities.student.StudentsListActivity;
 import com.tda.finalyear.activities.teacher.TeachersListActivity;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    RelativeLayout addHoliday, addEvent, addNotification, addFacility, addFee, addExam, adminProfile;
+    RelativeLayout addHoliday, addEvent, addNotice, addFacility, addFee, addExam, adminProfile;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -64,7 +65,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 startActivity(new Intent(AdminActivity.this, AddFeeActivity.class));
             }
         });
-        addNotification.setOnClickListener(new View.OnClickListener() {
+        addFacility.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminActivity.this, AddFacilityActivity.class));
+            }
+        });
+        addNotice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminActivity.this, AddNoticeActivity.class));
@@ -99,11 +106,12 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         addEvent = findViewById(R.id.addevent);
         addExam = findViewById(R.id.addexam);
         addFee = findViewById(R.id.addfee);
-        addNotification = findViewById(R.id.add_notice);
+        addNotice = findViewById(R.id.add_notice);
         adminProfile = findViewById(R.id.profile);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        addFacility = findViewById(R.id.addfacility);
     }
 
     @Override

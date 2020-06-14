@@ -2,6 +2,7 @@ package com.tda.finalyear.api;
 
 import com.tda.finalyear.services.AdminService;
 import com.tda.finalyear.services.EventService;
+import com.tda.finalyear.services.FacilityService;
 import com.tda.finalyear.services.HolidayService;
 import com.tda.finalyear.services.NoticeService;
 import com.tda.finalyear.services.StudentService;
@@ -11,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "http://192.168.43.61:5000";
+    private static final String BASE_URL = "http://192.168.43.172:5000";
     private static RetrofitClient retrofitClient;
     private Retrofit retrofit;
 
@@ -44,5 +45,8 @@ public class RetrofitClient {
     public HolidayService getHolidayService(){ return retrofit.create(HolidayService.class);}
 
     public EventService getEventService(){ return retrofit.create(EventService.class); }
+
     public NoticeService getNoticeService(){ return retrofit.create(NoticeService.class); }
+
+    public FacilityService getFacilityService(){ return retrofit.create(FacilityService.class); }
 }

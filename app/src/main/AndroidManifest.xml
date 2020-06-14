@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.notice.EditNoticeActivity"></activity>
+        <activity android:name=".activities.facility.FacilityListActivity"></activity>
+        <activity android:name=".activities.facility.EditFacilityActivity" />
+        <activity android:name=".activities.facility.AddFacilityActivity" />
+        <activity android:name=".activities.facility.FacilityActivity" />
+        <activity android:name=".activities.notice.EditNoticeActivity" />
         <activity android:name=".activities.notice.AddNoticeActivity" />
         <activity android:name=".activities.notice.NoticeActivity" />
         <activity android:name=".activities.notice.NoticeListActivity" />
