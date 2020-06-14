@@ -65,13 +65,16 @@ public class EditHolidayActivity extends AppCompatActivity {
                 RetrofitClient.getInstance().getHolidayService().editHoliday(holidayId,holiday).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.isSuccessful())
-                            startActivity(new Intent(getApplicationContext(),HolidayListActivity.class));
+                        if(response.isSuccessful()) {
+                            startActivity(new Intent(getApplicationContext(), HolidayListActivity.class));
+                        }else{
+                            Toast.makeText(EditHolidayActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(EditHolidayActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditHolidayActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

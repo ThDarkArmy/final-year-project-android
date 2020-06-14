@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".activities.holiday.HolidayActivity">
+    tools:context=".activities.notice.NoticeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,12 +13,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title_event"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:padding="10dp"
-            android:text="Event Title"
+            android:text="Title"
             android:textSize="30dp">
 
         </TextView>
@@ -29,11 +29,11 @@
             android:background="#5c5d5e" />
 
         <TextView
-            android:id="@+id/date_event"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Event Start Date"
+            android:text="Date"
             android:textSize="25dp">
 
         </TextView>
@@ -44,26 +44,11 @@
             android:background="#5c5d5e" />
 
         <TextView
-            android:id="@+id/duration_event"
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Event Duration"
-            android:textSize="25dp">
-
-        </TextView>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#5c5d5e" />
-
-        <TextView
-            android:id="@+id/description_event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Event Description"
+            android:text="Description"
             android:textSize="25dp"></TextView>
 
         <View

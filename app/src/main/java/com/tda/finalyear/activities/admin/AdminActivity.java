@@ -99,7 +99,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         addEvent = findViewById(R.id.addevent);
         addExam = findViewById(R.id.addexam);
         addFee = findViewById(R.id.addfee);
-        addNotification = findViewById(R.id.addnotification);
+        addNotification = findViewById(R.id.add_notice);
         adminProfile = findViewById(R.id.profile);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);

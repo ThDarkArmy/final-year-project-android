@@ -1,62 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:scrollbars="vertical"
     tools:context=".activities.holiday.HolidayActivity">
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/holiday_title"
-        android:text="Holiday Tilte"
-        android:textSize="30dp"
-        android:layout_marginTop="20dp"
-        android:padding="10dp">
+        android:orientation="vertical">
 
-    </TextView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#5c5d5e" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/holiday_date"
-        android:text="Holiday Start Date"
-        android:textSize="25dp"
-        android:padding="10dp">
+        <TextView
+            android:id="@+id/holiday_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Holiday Tilte"
+            android:textSize="30dp">
 
-    </TextView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#5c5d5e" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/holiday_duration"
-        android:text="Holiday Duration"
-        android:textSize="25dp"
-        android:padding="10dp">
+        </TextView>
 
-    </TextView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#5c5d5e" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/holiday_desc"
-        android:text="Holiday Description"
-        android:textSize="25dp"
-        android:padding="10dp">
-    </TextView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#5c5d5e" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#5c5d5e" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/holiday_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Holiday Start Date"
+            android:textSize="25dp">
+
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#5c5d5e" />
+
+        <TextView
+            android:id="@+id/holiday_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Holiday Duration"
+            android:textSize="25dp">
+
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#5c5d5e" />
+
+        <TextView
+            android:id="@+id/holiday_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Holiday Description"
+            android:textSize="25dp"></TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#5c5d5e" />
+    </LinearLayout>
+
+</ScrollView>

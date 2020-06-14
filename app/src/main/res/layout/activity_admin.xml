@@ -182,24 +182,24 @@
                 android:layout_weight="1">
 
                 <RelativeLayout
-                    android:id="@+id/addnotification"
+                    android:id="@+id/add_notice"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="true">
 
                     <TextView
-                        android:id="@+id/notificationtext"
+                        android:id="@+id/notice_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/notificationimg"
+                        android:layout_below="@id/notice_img"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Add Notification"
+                        android:text="Add Notice"
                         android:textSize="19sp"
                         app:fontFamily="@font/aclonica" />
 
                     <ImageView
-                        android:id="@+id/notificationimg"
+                        android:id="@+id/notice_img"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
