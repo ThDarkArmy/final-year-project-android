@@ -60,20 +60,13 @@ public class AddExamActivity extends AppCompatActivity {
     private Uri imageUri;
     private static final int MY_PERMISSIONS_REQUESTS = 0;
 
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUESTS: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                } else {
-                    // FIXME: Handle this case the user denied to grant the permissions
-                }
-                break;
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        if(requestCode == MY_PERMISSIONS_REQUESTS){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            }else{
+                // fuck off
             }
-            default:
-                // TODO: Take care of this case later
-                break;
         }
     }
 
@@ -127,7 +120,6 @@ public class AddExamActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }
@@ -168,13 +160,11 @@ public class AddExamActivity extends AppCompatActivity {
     }
 
     public void addExamToDatabase() throws IOException {
-
-
         //Log.i("file", file.getPath());
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
         RequestBody titleR = RequestBody.create(MediaType.parse("text/plane"), title.getText().toString());
         RequestBody stdR = RequestBody.create(MediaType.parse("text/plane"), std.getText().toString());
-        MultipartBody.Part part = MultipartBody.Part.createFormData("image",imageFile.getName(), requestBody);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("routine",imageFile.getName(), requestBody);
         RetrofitClient.getInstance().getExamService().addExam(part, titleR, stdR).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -182,9 +172,14 @@ public class AddExamActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         startActivity(new Intent(AddExamActivity.this, ExamListActivity.class));
                     }else{
-                        ErrorPojo errorPojo = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorPojo.class);
-                        Log.i("examElse", errorPojo.getMsg());
-                        Toast.makeText(AddExamActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
+                        try{
+                            ErrorPojo errorPojo = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorPojo.class);
+                            Log.i("examElse", response.errorBody().string());
+                            Toast.makeText(AddExamActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
+                        }catch (Exception e){
+                            Log.i("exam", e.getMessage());
+                        }
+
                     }
                 }catch (Exception e){
                     Log.i("examEx", e.getMessage());

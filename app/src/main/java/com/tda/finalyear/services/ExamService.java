@@ -30,9 +30,9 @@ public interface ExamService {
     @POST("/exam")
     Call<ResponseBody> addExam(@Part MultipartBody.Part routine, @Part("title") RequestBody title, @Part("std") RequestBody std);
 
-    @FormUrlEncoded
+    @Multipart
     @PUT("/exam/{id}")
-    Call<ResponseBody> editExam(@Path("id") String id, @Field("title") String title, @Field("std") String std, @Field("routine") Uri routine);
+    Call<ResponseBody> editExam(@Path("id") String id, @Part MultipartBody.Part routine, @Part("title") RequestBody title, @Part("std") RequestBody std);
 
     @DELETE("/exam/{id}")
     Call<ResponseBody> deleteExam(@Path("id") String id);
