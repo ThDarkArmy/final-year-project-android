@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.facility.FacilityListActivity"></activity>
+        <activity android:name=".activities.exam.ExamListActivity"></activity>
+        <activity android:name=".activities.fee.FeeListActivity" />
+        <activity android:name=".activities.facility.FacilityListActivity" />
         <activity android:name=".activities.facility.EditFacilityActivity" />
         <activity android:name=".activities.facility.AddFacilityActivity" />
         <activity android:name=".activities.facility.FacilityActivity" />

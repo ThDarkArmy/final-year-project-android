@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.exam.AddExamActivity">
+    android:padding="16dp"
+    tools:context="com.tda.finalyear.activities.exam.AddExamActivity">
+    <Button
+        android:id="@+id/button_choose_image"
+        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Image" />
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/button_choose_image"
+        android:hint="Exam Title"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/button_choose_image" />
+    <EditText
+        android:id="@+id/std"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/button_choose_image"
+        android:layout_below="@id/title"
+        android:hint="Class"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/button_choose_image" />
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/progress_bar"
+        android:layout_below="@id/std"
+        android:layout_marginTop="16dp" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_exam"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentLeft="true" />
+    <Button
+        android:id="@+id/add_exam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Add Exam" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/show_exams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/add_exam"
+        android:layout_alignTop="@+id/add_exam"
+        android:layout_marginStart="25dp"
+        android:layout_toEndOf="@+id/add_exam"
+        android:gravity="center"
+        android:text="Show Exams"
+        android:textSize="16sp"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/add_exam" />
+</RelativeLayout>
