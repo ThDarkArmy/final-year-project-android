@@ -33,7 +33,10 @@ public class AddFacilityActivity extends AppCompatActivity {
         addFacility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addFacilityToDatabase();
+                if(validation()){
+                    addFacilityToDatabase();
+                }
+
             }
         });
 
@@ -71,6 +74,22 @@ public class AddFacilityActivity extends AppCompatActivity {
                 Toast.makeText(AddFacilityActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // form validation
+    public boolean validation(){
+        String vName = name.getText().toString();
+        String vDesc = description.getText().toString();
+
+        if(vName.isEmpty()){
+            name.setError("Name field cannot be empty.");
+            return false;
+        }else if(vDesc.isEmpty()){
+            description.setError("Enter a valid admission fee.");
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public void bind(){

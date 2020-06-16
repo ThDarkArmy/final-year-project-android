@@ -38,7 +38,10 @@ public class AddEventActivity extends AppCompatActivity {
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addEventToDatabase();
+                if(validation()){
+                    addEventToDatabase();
+                }
+
             }
         });
 
@@ -92,6 +95,31 @@ public class AddEventActivity extends AppCompatActivity {
             }
         });
     }
+
+    // form validation
+    public boolean validation(){
+        String vTitle = title.getText().toString();
+        String vDEsc = description.getText().toString();
+        String vDate = date.getText().toString();
+        String vDuration = duration.getText().toString();
+        if(vTitle.isEmpty()){
+            title.setError("Title field cannot be empty.");
+            return false;
+        }else if(vDate.isEmpty()){
+            date.setError("Enter a valid date.");
+            return false;
+        }else if(vDuration.isEmpty() || !vDuration.matches("-?\\d+")){
+            duration.setError("Enter a valid duration.");
+            return false;
+        }else if(vDEsc.isEmpty()){
+            description.setError("Enter a valid description.");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
 
     public void bind(){
         title = findViewById(R.id.add_event_title);

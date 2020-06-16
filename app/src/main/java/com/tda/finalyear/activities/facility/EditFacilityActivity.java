@@ -39,7 +39,10 @@ public class EditFacilityActivity extends AppCompatActivity {
         editFacility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateFacility(facilityId);
+                if(validation()){
+                    updateFacility(facilityId);
+                }
+
             }
         });
 
@@ -77,6 +80,23 @@ public class EditFacilityActivity extends AppCompatActivity {
             }
         });
     }
+
+    // form validation
+    public boolean validation(){
+        String vName = name.getText().toString();
+        String vDesc = description.getText().toString();
+
+        if(vName.isEmpty()){
+            name.setError("Name field cannot be empty.");
+            return false;
+        }else if(vDesc.isEmpty()){
+            description.setError("Enter a valid admission fee.");
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     public void bind(){
         name = findViewById(R.id.name);
         description = findViewById(R.id.description);

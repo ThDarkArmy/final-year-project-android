@@ -44,7 +44,10 @@ public class EditNoticeActivity extends AppCompatActivity {
         editNotice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateNotice(noticeId);
+                if(validation()){
+                    updateNotice(noticeId);
+                }
+
             }
         });
 
@@ -86,6 +89,27 @@ public class EditNoticeActivity extends AppCompatActivity {
                 Toast.makeText(EditNoticeActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // form validation
+    public boolean validation(){
+        String vTitle = title.getText().toString();
+        String vDEsc = description.getText().toString();
+        String vDate = date.getText().toString();
+
+        if(vTitle.isEmpty()){
+            title.setError("Title field cannot be empty.");
+            return false;
+        }else if(vDate.isEmpty()){
+            date.setError("Enter a valid date.");
+            return false;
+        }else if(vDEsc.isEmpty()){
+            description.setError("Enter a valid description.");
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     public void bind(){

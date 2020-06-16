@@ -57,13 +57,14 @@ public class AddExamActivity extends AppCompatActivity {
     Bitmap bitmap = null;
     InputStream inputStream = null;
     File imageFile = null;
-    private Uri imageUri;
+    private boolean isImage = false;
+    private Uri imageUri = null;
     private static final int MY_PERMISSIONS_REQUESTS = 0;
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if(requestCode == MY_PERMISSIONS_REQUESTS){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
+                // go ahead
             }else{
                 // fuck off
             }
@@ -116,7 +117,9 @@ public class AddExamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    addExamToDatabase();
+                    if(validation()){
+                        addExamToDatabase();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -125,10 +128,12 @@ public class AddExamActivity extends AppCompatActivity {
     }
 
     public void chooseImageFromDevice(){
+
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
+
     }
 
     @Override
@@ -143,13 +148,14 @@ public class AddExamActivity extends AppCompatActivity {
                 options.inSampleSize = 2;
                 options.inScreenDensity = DisplayMetrics.DENSITY_LOW;
                 bitmap = BitmapFactory.decodeStream(inputStream,null,options);
-                imageFile = new File(Environment.getExternalStorageDirectory()+"/image.jpg");
+                imageFile = new File(Environment.getExternalStorageDirectory()+"/"+title.getText().toString()+std.getText().toString()+"image.jpg");
                 imageFile.createNewFile();
                 if(!imageFile.exists()){
                     imageFile.mkdir();
                 }
                 FileOutputStream fileOutputStream = new FileOutputStream(imageFile);
                 bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+
                 fileOutputStream.flush();
                 fileOutputStream.close();
             }catch (Exception e){
@@ -177,7 +183,7 @@ public class AddExamActivity extends AppCompatActivity {
                             Log.i("examElse", response.errorBody().string());
                             Toast.makeText(AddExamActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
-                            Log.i("exam", e.getMessage());
+                            Log.i("examX", e.getMessage());
                         }
 
                     }
@@ -192,6 +198,22 @@ public class AddExamActivity extends AppCompatActivity {
                 Toast.makeText(AddExamActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public boolean validation(){
+        if(title.getText().toString().isEmpty()){
+            title.setError("Title cannot be empty.");
+            return false;
+        }else if(std.getText().toString().isEmpty()){
+            std.setError("Class cannot be empty.");
+            return false;
+        }else if(imageUri==null){
+            Toast.makeText(AddExamActivity.this, "Image field cannot be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     public void bind(){

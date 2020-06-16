@@ -46,7 +46,10 @@ public class EditEventActivity extends AppCompatActivity {
         editEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateEvent(eventId);
+                if(validation()){
+                    updateEvent(eventId);
+                }
+
             }
         });
         eventList.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +98,31 @@ public class EditEventActivity extends AppCompatActivity {
             }
         });
     }
+
+    // form validation
+    public boolean validation(){
+        String vTitle = title.getText().toString();
+        String vDEsc = description.getText().toString();
+        String vDate = date.getText().toString();
+        String vDuration = duration.getText().toString();
+        if(vTitle.isEmpty()){
+            title.setError("Title field cannot be empty.");
+            return false;
+        }else if(vDate.isEmpty()){
+            date.setError("Enter a valid date.");
+            return false;
+        }else if(vDuration.isEmpty() || !vDuration.matches("-?\\d+")){
+            duration.setError("Enter a valid duration.");
+            return false;
+        }else if(vDEsc.isEmpty()){
+            description.setError("Enter a valid description.");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
 
     public void bind(){
         title = findViewById(R.id.edit_event_title);

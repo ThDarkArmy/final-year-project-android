@@ -5,5 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.exam.ExamActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="Title"
+            android:textSize="30dp"
+            android:layout_marginTop="20dp">
+        </TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#5c5d5e" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/std"
+            android:text="Class"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp">
+        </TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#5c5d5e" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/routine_image"
+            android:layout_marginTop="5dp">
+        </ImageView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,8 +39,9 @@ public class AddHolidayActivity extends AppCompatActivity {
         addHoliday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHolidayToDatabase();
-                startActivity(new Intent(AddHolidayActivity.this, HolidayListActivity.class));
+                if(validation()){
+                    addHolidayToDatabase();
+                }
             }
         });
 
@@ -65,11 +66,7 @@ public class AddHolidayActivity extends AppCompatActivity {
 
                 try{
                     if(response.isSuccessful()){
-                        String str = response.body().string();
-
-                        Toast.makeText(AddHolidayActivity.this, "Holiday Added Successfully.", Toast.LENGTH_LONG);
-                        Log.i("holidayadd", str);
-
+                        startActivity(new Intent(AddHolidayActivity.this, HolidayListActivity.class));
                     }else{
                         Gson gson = new GsonBuilder().create();
                         ErrorPojo mError;
@@ -94,6 +91,31 @@ public class AddHolidayActivity extends AppCompatActivity {
                 Log.i("holidayf", t.getMessage());
             }
         });
+    }
+
+    // form validation
+    public boolean validation(){
+        String vTitle = title.getText().toString();
+        String vDEsc = description.getText().toString();
+        String vDate = date.getText().toString();
+        String vDuration = duration.getText().toString();
+        if(vTitle.isEmpty()){
+            title.setError("Title field cannot be empty.");
+            return false;
+
+        }else if(vDate.isEmpty()){
+            date.setError("Enter a valid date.");
+            return false;
+        }else if(vDuration.isEmpty() || !vDuration.matches("-?\\d+")){
+            duration.setError("Enter a valid duration.");
+            return false;
+        }else if(vDEsc.isEmpty()){
+            description.setError("Enter a valid description.");
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     public void bind(){

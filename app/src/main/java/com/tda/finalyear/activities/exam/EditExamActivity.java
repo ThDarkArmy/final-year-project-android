@@ -57,12 +57,13 @@ public class EditExamActivity extends AppCompatActivity {
     InputStream inputStream = null;
     File imageFile = null;
     private Uri imageUri;
+    private boolean isImage = false;
     private static final int MY_PERMISSIONS_REQUESTS = 0;
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if(requestCode == MY_PERMISSIONS_REQUESTS){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
+                // go ahead
             }else{
                 // fuck off
             }
@@ -100,11 +101,10 @@ public class EditExamActivity extends AppCompatActivity {
         String examId = Objects.requireNonNull(getIntent().getStringExtra("EXAM_ID"));
         String ETitle = getIntent().getStringExtra("EXAM_TITLE");
         String EStd = getIntent().getStringExtra("EXAM_STD");
-        //String ERoutine = getIntent();
-
+        Uri myUri=getIntent().getData();
         title.setText(ETitle);
         std.setText(EStd);
-        //routineImage.setImageBitmap(ERoutine);
+        Picasso.get().load(myUri).into(routineImage);
 
 
         showExams.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +124,10 @@ public class EditExamActivity extends AppCompatActivity {
         editExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateExam(examId);
+                if(validation()){
+                    updateExam(examId);
+                }
+
             }
         });
     }
@@ -148,7 +151,7 @@ public class EditExamActivity extends AppCompatActivity {
                 options.inSampleSize = 2;
                 options.inScreenDensity = DisplayMetrics.DENSITY_LOW;
                 bitmap = BitmapFactory.decodeStream(inputStream,null,options);
-                imageFile = new File(Environment.getExternalStorageDirectory()+"/image.jpg");
+                imageFile = new File(Environment.getExternalStorageDirectory()+"/"+title.getText().toString()+std.getText().toString()+"image.jpg");
                 imageFile.createNewFile();
                 if(!imageFile.exists()){
                     imageFile.mkdir();
@@ -178,9 +181,9 @@ public class EditExamActivity extends AppCompatActivity {
                         startActivity(new Intent(EditExamActivity.this, ExamListActivity.class));
                     }else{
                         try{
-                            ErrorPojo errorPojo = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorPojo.class);
+                            //ErrorPojo errorPojo = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorPojo.class);
                             Log.i("examElse", response.errorBody().string());
-                            Toast.makeText(EditExamActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(EditExamActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
                             Log.i("exam", e.getMessage());
                         }
@@ -197,6 +200,22 @@ public class EditExamActivity extends AppCompatActivity {
                 Toast.makeText(EditExamActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public boolean validation(){
+        if(title.getText().toString().isEmpty()){
+            title.setError("Title cannot be empty.");
+            return false;
+        }else if(std.getText().toString().isEmpty()){
+            std.setError("Class cannot be empty.");
+            return false;
+        }else if(imageUri == null){
+            Toast.makeText(EditExamActivity.this, "Image field cannot be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
     public void bind(){

@@ -17,6 +17,7 @@ import com.tda.finalyear.R;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.Holiday;
 import com.tda.finalyear.models.HolidayList;
+import com.tda.finalyear.services.ExamService;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ import retrofit2.Response;
 
 public class EditHolidayActivity extends AppCompatActivity {
 
-    private EditText holidayTitleEditText,holidayDescriptionEditText,holidayStartDateEditText,holidayDurationEditText;
+    private EditText title, description, date, duration;
     Button editHolidayButton, backToHolidays;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -44,39 +45,19 @@ public class EditHolidayActivity extends AppCompatActivity {
         String holidayTitle = getIntent().getExtras().getString("HOLIDAY_TITLE");
         String holidayStartDate  = getIntent().getExtras().getString("HOLIDAY_START_DATE");
         System.out.println(holidayDescription+" "+holidayDuration+" "+holidayTitle);
-        holidayTitleEditText = findViewById(R.id.holidaytitle);
-        holidayDescriptionEditText = findViewById(R.id.holiday_desc);
-        holidayStartDateEditText = findViewById(R.id.holidaydate);
-        holidayDurationEditText = findViewById(R.id.holidayduration);
-        editHolidayButton = findViewById(R.id.updateholiday);
-        backToHolidays = findViewById(R.id.view_holidays);
 
-        holidayDurationEditText.setText(holidayDuration.toString());
-        holidayDescriptionEditText.setText(holidayDescription);
-        holidayStartDateEditText.setText(holidayStartDate);
-        holidayTitleEditText.setText(holidayTitle);
+
+        duration.setText(holidayDuration.toString());
+        description.setText(holidayDescription);
+        date.setText(holidayStartDate);
+        title.setText(holidayTitle);
 
         editHolidayButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
-                Holiday holiday =  new Holiday(holidayTitleEditText.getText().toString(),holidayStartDateEditText.getText().toString(),Integer.parseInt(holidayDurationEditText.getText().toString()),holidayDescriptionEditText.getText().toString());
-                RetrofitClient.getInstance().getHolidayService().editHoliday(holidayId,holiday).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.isSuccessful()) {
-                            startActivity(new Intent(getApplicationContext(), HolidayListActivity.class));
-                        }else{
-                            Toast.makeText(EditHolidayActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(EditHolidayActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if(validation()){
+                    updateHoliday(holidayId);
+                }
             }
         });
 
@@ -87,5 +68,61 @@ public class EditHolidayActivity extends AppCompatActivity {
                 startActivity(new Intent(EditHolidayActivity.this, HolidayListActivity.class));
             }
         });
+    }
+
+    public void updateHoliday(String holidayId){
+        Holiday holiday =  new Holiday(title.getText().toString(),date.getText().toString(),Integer.parseInt(duration.getText().toString()),description.getText().toString());
+        RetrofitClient.getInstance().getHolidayService().editHoliday(holidayId,holiday).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try{
+                    if(response.isSuccessful()) {
+                        startActivity(new Intent(getApplicationContext(), HolidayListActivity.class));
+                    }else{
+                        Toast.makeText(EditHolidayActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }catch(Exception e){
+                    Toast.makeText(EditHolidayActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(EditHolidayActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // form validation
+    public boolean validation(){
+        String vTitle = title.getText().toString();
+        String vDEsc = description.getText().toString();
+        String vDate = date.getText().toString();
+        String vDuration = duration.getText().toString();
+        if(vTitle.isEmpty()){
+            title.setError("Title field cannot be empty.");
+            return false;
+        }else if(vDate.isEmpty()){
+            date.setError("Enter a valid date.");
+            return false;
+        }else if(vDuration.isEmpty() || !vDuration.matches("-?\\d+")){
+            duration.setError("Enter a valid duration.");
+            return false;
+        }else if(vDEsc.isEmpty()){
+            description.setError("Enter a valid description.");
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    public void bind(){
+        title = findViewById(R.id.holidaytitle);
+        description = findViewById(R.id.holiday_desc);
+        date = findViewById(R.id.holidaydate);
+        duration = findViewById(R.id.holidayduration);
+        editHolidayButton = findViewById(R.id.updateholiday);
+        backToHolidays = findViewById(R.id.view_holidays);
     }
 }

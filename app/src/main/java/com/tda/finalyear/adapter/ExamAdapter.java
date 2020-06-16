@@ -2,6 +2,7 @@ package com.tda.finalyear.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.exam.EditExamActivity;
+import com.tda.finalyear.activities.exam.ExamActivity;
 import com.tda.finalyear.activities.exam.ExamListActivity;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.ExamList;
@@ -51,7 +53,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
                 intent.putExtra("EXAM_ID", exams.getExams().get(position).getId());
                 intent.putExtra("EXAM_STD", exams.getExams().get(position).getStd());
                 intent.putExtra("EXAM_TITLE", exams.getExams().get(position).getTitle());
-                intent.putExtra("EXAM_ROUTINE", exams.getExams().get(position).getRoutine());
+                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+exams.getExams().get(position).getRoutine()));
                 context.startActivity(intent);
             }
         });
@@ -78,11 +80,11 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ExamViewHolder
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ExamListActivity.class);
+                Intent intent = new Intent(context, ExamActivity.class);
                 intent.putExtra("EXAM_ID", exams.getExams().get(position).getId());
                 intent.putExtra("EXAM_STD", exams.getExams().get(position).getStd());
                 intent.putExtra("EXAM_TITLE", exams.getExams().get(position).getTitle());
-                intent.putExtra("EXAM_ROUTINE", exams.getExams().get(position).getRoutine());
+                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+exams.getExams().get(position).getRoutine()));
                 context.startActivity(intent);
             }
         });
