@@ -29,6 +29,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
     }
 
     public List<String> getIdList(){
+        System.out.println("^#*!^@#*&!@^#*!^#!*@#^"+idList);
         return idList;
     }
 
