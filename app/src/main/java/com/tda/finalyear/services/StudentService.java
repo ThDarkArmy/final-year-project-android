@@ -9,10 +9,14 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface StudentService {
     @GET("/student")
     Call<ResponseBody> getStudent();
+
+    @GET("/student/std/{std}")
+    Call<ResponseBody> getStudentByClass(@Path("std") String std);
 
     @POST("/student/signup")
     Call<ResponseBody> signUpStudent(@Body Student student);

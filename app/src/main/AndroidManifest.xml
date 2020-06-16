@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.exam.ExamListActivity"></activity>
+        <activity android:name=".activities.attendance.TakeAttendanceActivity"></activity>
+        <activity android:name=".activities.notes.UploadNotesActivity" />
+        <activity android:name=".activities.assignment.UploadAssignmentActivity" />
+        <activity android:name=".activities.teacher.TeacherProfileActivity" />
+        <activity android:name=".activities.exam.ExamListActivity" />
         <activity android:name=".activities.fee.FeeListActivity" />
         <activity android:name=".activities.facility.FacilityListActivity" />
         <activity android:name=".activities.facility.EditFacilityActivity" />

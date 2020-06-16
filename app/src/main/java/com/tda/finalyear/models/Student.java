@@ -1,20 +1,57 @@
 package com.tda.finalyear.models;
 
-public class Student {
-    private String name;
-    private String std;
-    private String roll;
-    private String email;
-    private String mobile;
-    private String password;
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Student(String name, String std, String roll, String email, String mobile, String password) {
+public class Student {
+
+    @SerializedName("_id")
+    @Expose
+    private String id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("roll")
+    @Expose
+    private Integer roll;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("mobile")
+    @Expose
+    private Integer mobile;
+    @SerializedName("std")
+    @Expose
+    private String std;
+    @SerializedName("attendanceHistory")
+    @Expose
+    private List<AttendanceHistory> attendanceHistory = null;
+    @SerializedName("feeHistory")
+    @Expose
+    private List<FeeHistory> feeHistory = null;
+
+
+
+    public Student(String name, Integer roll, String email, Integer mobile, String std, String password) {
         this.name = name;
-        this.std = std;
         this.roll = roll;
         this.email = email;
         this.mobile = mobile;
+        this.std = std;
         this.password = password;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -25,19 +62,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getStd() {
-        return std;
-    }
-
-    public void setStd(String std) {
-        this.std = std;
-    }
-
-    public String getRoll() {
+    public Integer getRoll() {
         return roll;
     }
 
-    public void setRoll(String roll) {
+    public void setRoll(Integer roll) {
         this.roll = roll;
     }
 
@@ -49,19 +78,36 @@ public class Student {
         this.email = email;
     }
 
-    public String getMobile() {
+    public Integer getMobile() {
         return mobile;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(Integer mobile) {
         this.mobile = mobile;
     }
 
-    public String getPassword() {
-        return password;
+    public String getStd() {
+        return std;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setStd(String std) {
+        this.std = std;
     }
+
+    public List<AttendanceHistory> getAttendanceHistory() {
+        return attendanceHistory;
+    }
+
+    public void setAttendanceHistory(List<AttendanceHistory> attendanceHistory) {
+        this.attendanceHistory = attendanceHistory;
+    }
+
+    public List<FeeHistory> getFeeHistory() {
+        return feeHistory;
+    }
+
+    public void setFeeHistory(List<FeeHistory> feeHistory) {
+        this.feeHistory = feeHistory;
+    }
+
 }
