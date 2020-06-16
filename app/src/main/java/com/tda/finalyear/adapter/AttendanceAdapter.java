@@ -1,10 +1,12 @@
 package com.tda.finalyear.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tda.finalyear.R;
 import com.tda.finalyear.models.StudentList;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,9 +44,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
     public void onBindViewHolder(@NonNull AttendanceViewHolder holder, int position) {
         holder.roll.setText(students.getStudents().get(position).getRoll().toString()+".");
         holder.name.setText(students.getStudents().get(position).getName());
-        if(holder.checkBox.isChecked()){
-            idList.add(students.getStudents().get(position).getId());
-        }
+        Log.i("checkbox",String.valueOf(holder.checkBox.isChecked()));
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    idList.add(students.getStudents().get(position).getId());
+                }
+            }
+        });
     }
 
     @Override

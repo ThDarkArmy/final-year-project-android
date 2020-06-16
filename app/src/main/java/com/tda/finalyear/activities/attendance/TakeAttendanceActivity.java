@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,13 +17,18 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.event.EventListActivity;
+import com.tda.finalyear.activities.teacher.TeacherActivity;
 import com.tda.finalyear.adapter.AttendanceAdapter;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.AttendanceHistory;
 import com.tda.finalyear.models.StudentList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +39,8 @@ public class TakeAttendanceActivity extends AppCompatActivity implements Adapter
     RecyclerView recyclerView;
     Spinner spinner;
     Button submit;
-    List<String> ids = null;
+    List<String> ids = new ArrayList<>();
+    String std;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +67,29 @@ public class TakeAttendanceActivity extends AppCompatActivity implements Adapter
 
     public void submitAttendance(List<String> ids){
         Log.i("ids",ids.toString());
+        Map<String, List<String>> map = new HashMap<>();
+        map.put("id",ids);
+        Log.i("ids",map.toString());
+        RetrofitClient.getInstance().getAttendanceService().makeAttendance(std, map).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try{
+                    if(response.isSuccessful()){
+                        Log.i("responseAtt", response.body().string());
+                        startActivity(new Intent(TakeAttendanceActivity.this, TeacherActivity.class));
+                    }else{
+                        Log.i("responseAttElse", response.errorBody().string());
+                    }
+                }catch(Exception e){
+                    Log.i("responseAttEx", e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(TakeAttendanceActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -68,7 +98,7 @@ public class TakeAttendanceActivity extends AppCompatActivity implements Adapter
         Log.i("inSelect", "inSelect");
         if(parent.getId()==R.id.class_spinner){
             String vfs = parent.getItemAtPosition(position).toString();
-            String std = vfs.substring(6);
+            std = vfs.substring(6);
             RetrofitClient.getInstance().getStudentService().getStudentByClass(std).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -32,9 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:entries="@array/class_arrays"
-            android:prompt="@string/class_prompt" />
-
-
+            android:prompt="@string/class_prompt"
+            style="@android:style/Widget.Spinner"/>
 
         <RelativeLayout
             android:layout_height="wrap_content"
