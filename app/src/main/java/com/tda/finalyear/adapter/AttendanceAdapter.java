@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tda.finalyear.R;
 import com.tda.finalyear.models.StudentList;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.AttendanceViewHolder> {
@@ -23,6 +25,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
     public AttendanceAdapter(Context context, StudentList students) {
         this.context = context;
         this.students = students;
+        idList =  new ArrayList<>();
     }
 
     public List<String> getIdList(){
