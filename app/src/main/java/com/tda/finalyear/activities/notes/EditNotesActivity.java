@@ -27,12 +27,14 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.shockwave.pdfium.PdfDocument;
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.assignment.AssignmentListActivity;
-import com.tda.finalyear.activities.assignment.UploadAssignmentActivity;
+import com.tda.finalyear.activities.assignment.EditAssignmentActivity;
 import com.tda.finalyear.api.RetrofitClient;
+import com.tda.finalyear.models.NotesList;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -43,8 +45,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UploadNotesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnPageChangeListener, OnLoadCompleteListener,
-        OnPageErrorListener {
+public class EditNotesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnPageChangeListener, OnLoadCompleteListener, OnPageErrorListener  {
 
     private int pageNumber = 0;
 
@@ -58,12 +59,17 @@ public class UploadNotesActivity extends AppCompatActivity implements AdapterVie
     private Button choseFile, uploadFile;
     private String std;
     boolean classSelected = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_notes);
+        setContentView(R.layout.activity_edit_notes);
         bind();
+        String assignmentId = Objects.requireNonNull(getIntent().getStringExtra("NOTES_ID"));
+        String ETitle = getIntent().getStringExtra("NOTES_TITLE");
+        String EStd = getIntent().getStringExtra("NOTES_STD");
+        Uri myUri=getIntent().getData();
+        title.setText(ETitle);
+
         initDialog();
         spinner.setOnItemSelectedListener(this);
         String[] cls = getResources().getStringArray(R.array.class_arrays);
@@ -82,7 +88,7 @@ public class UploadNotesActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
                 if(validation()){
-                    uploadNotes();
+                    updateNotes(assignmentId);
                 }
             }
         });
@@ -202,7 +208,7 @@ public class UploadNotesActivity extends AppCompatActivity implements AdapterVie
         pDialog.setCancelable(true);
     }
 
-    public void uploadNotes(){
+    public void updateNotes(String assignmentId){
         if (pdfPath == null) {
             Toast.makeText(this, "please select an image ", Toast.LENGTH_LONG).show();
             return;
@@ -212,31 +218,33 @@ public class UploadNotesActivity extends AppCompatActivity implements AdapterVie
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/pdf"), file);
             RequestBody titleR = RequestBody.create(MediaType.parse("text/plane"), title.getText().toString());
             RequestBody stdR = RequestBody.create(MediaType.parse("text/plane"), std);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("notesFile",file.getName(), requestBody);
-            RetrofitClient.getInstance().getNotesService().uploadNotes(part,titleR,stdR).enqueue(new Callback<ResponseBody>() {
+            MultipartBody.Part part = MultipartBody.Part.createFormData("assignmentFile",file.getName(), requestBody);
+            RetrofitClient.getInstance().getNotesService().updateNotes(assignmentId,part,titleR,stdR).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()){
-                        startActivity(new Intent(UploadNotesActivity.this, NotesListActivity.class));
+                        startActivity(new Intent(EditNotesActivity.this, NotesList.class));
                         try {
-                            Log.i("notes", response.body().string());
+                            Log.i("assignment", response.body().string());
                         } catch (IOException e) {
-                            Log.i("notesE", e.getMessage());
+                            Log.i("assignmentE", e.getMessage());
                         }
                     }else{
                         try {
-                            Log.i("notesEl", response.errorBody().string());
+                            Log.i("assignmentEl", response.errorBody().string());
                         }catch (Exception e){
-                            Log.i("NotesEx", e.getMessage());
+                            Log.i("assignmentX", e.getMessage());
                         }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(UploadNotesActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditNotesActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
+
         }
     }
 
@@ -269,4 +277,5 @@ public class UploadNotesActivity extends AppCompatActivity implements AdapterVie
         uploadFile = findViewById(R.id.upload_file);
         pdfView = findViewById(R.id.pdfView);
     }
+
 }

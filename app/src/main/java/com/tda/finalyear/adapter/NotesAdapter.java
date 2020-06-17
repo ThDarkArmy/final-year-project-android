@@ -1,5 +1,6 @@
 package com.tda.finalyear.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.assignment.AssignmentActivity;
 import com.tda.finalyear.activities.assignment.EditAssignmentActivity;
+import com.tda.finalyear.activities.notes.EditNotesActivity;
+import com.tda.finalyear.activities.notes.NotesActivity;
 import com.tda.finalyear.api.RetrofitClient;
-import com.tda.finalyear.models.AssignmentList;
+import com.tda.finalyear.models.NotesList;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,35 +36,35 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
+public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
     Context context;
-    private AssignmentList assignments;
+    private NotesList notes;
     ConstraintLayout mainLayout;
     File file;
 
-    public AssignmentAdapter(Context context, AssignmentList assignments) {
+    public NotesAdapter(Context context, NotesList notes) {
         this.context = context;
-        this.assignments = assignments;
+        this.notes = notes;
     }
 
     @NonNull
     @Override
-    public AssignmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.assignment_card_view, parent, false);
-        return new AssignmentViewHolder(view);
+    public NotesAdapter.NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.notes_card_view, parent, false);
+        return new NotesAdapter.NotesViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AssignmentViewHolder holder, int position) {
-        holder.title.setText(assignments.getAssignments().get(position).getTitle());
+    public void onBindViewHolder(@NonNull NotesAdapter.NotesViewHolder holder, int position) {
+        holder.title.setText(notes.getNotes().get(position).getTitle());
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditAssignmentActivity.class);
-                intent.putExtra("ASSIGNMENT_ID", assignments.getAssignments().get(position).getId());
-                intent.putExtra("ASSIGNMENT_STD", assignments.getAssignments().get(position).getStd());
-                intent.putExtra("ASSIGNMENT_TITLE", assignments.getAssignments().get(position).getTitle());
-                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+assignments.getAssignments().get(position).getAssignmentFile()));
+                Intent intent = new Intent(context, EditNotesActivity.class);
+                intent.putExtra("NOTES_ID", notes.getNotes().get(position).getId());
+                intent.putExtra("NOTES_STD", notes.getNotes().get(position).getStd());
+                intent.putExtra("NOTES_TITLE", notes.getNotes().get(position).getTitle());
+                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()));
                 context.startActivity(intent);
             }
         });
@@ -69,11 +72,11 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RetrofitClient.getInstance().getAssignmentService().deleteAssignment(assignments.getAssignments().get(position).getId()).enqueue(new Callback<ResponseBody>() {
+                RetrofitClient.getInstance().getAssignmentService().deleteAssignment(notes.getNotes().get(position).getId()).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            assignments.getAssignments().remove(position);
+                            notes.getNotes().remove(position);
                             notifyDataSetChanged();
                         }
                     }
@@ -89,22 +92,23 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RetrofitClient.getInstance().getAssignmentService().downloadFileWithDynamicUrlAsync(RetrofitClient.BASE_URL+"/"+assignments.getAssignments().get(position).getAssignmentFile()).enqueue(new Callback<ResponseBody>() {
+                RetrofitClient.getInstance().getNotesService().downloadFileWithDynamicUrlAsync(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()).enqueue(new Callback<ResponseBody>() {
+                    @SuppressLint("StaticFieldLeak")
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.isSuccessful()){
                             new AsyncTask<Void, Void, Void>() {
                                 @Override
                                 protected Void doInBackground(Void... voids) {
-                                    boolean writtenToDisk = writeResponseBodyToDisk(response.body(), assignments.getAssignments().get(position).getTitle());
+                                    boolean writtenToDisk = writeResponseBodyToDisk(response.body(), notes.getNotes().get(position).getTitle());
                                     Log.i("fileDownload", "file download was a success? " + writtenToDisk);
                                     Log.i("fileIn", file.getPath());
-                                    Intent intent = new Intent(context, AssignmentActivity.class);
-                                    intent.putExtra("ASSIGNMENT_ID", assignments.getAssignments().get(position).getId());
-                                    intent.putExtra("ASSIGNMENT_STD", assignments.getAssignments().get(position).getStd());
-                                    intent.putExtra("ASSIGNMENT_TITLE", assignments.getAssignments().get(position).getTitle());
-                                    intent.putExtra("ASSIGNMENT_FILE_PATH", file.getPath());
-                                    intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+assignments.getAssignments().get(position).getAssignmentFile()));
+                                    Intent intent = new Intent(context, NotesActivity.class);
+                                    intent.putExtra("NOTES_ID", notes.getNotes().get(position).getId());
+                                    intent.putExtra("NOTES_STD", notes.getNotes().get(position).getStd());
+                                    intent.putExtra("NOTES_TITLE", notes.getNotes().get(position).getTitle());
+                                    intent.putExtra("NOTES_FILE_PATH", file.getPath());
+                                    intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()));
                                     context.startActivity(intent);
                                     return null;
                                 }
@@ -129,7 +133,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
 
     @Override
     public int getItemCount() {
-        return assignments.getAssignments().size();
+        return notes.getNotes().size();
     }
 
     private boolean writeResponseBodyToDisk(ResponseBody body, String title) {
@@ -183,15 +187,15 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         }
     }
 
-    public class AssignmentViewHolder extends RecyclerView.ViewHolder{
+    public class NotesViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         Button edit, delete;
-        public AssignmentViewHolder(@NonNull View itemView) {
+        public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             edit = itemView.findViewById(R.id.edit);
             delete = itemView.findViewById(R.id.delete);
-            mainLayout = itemView.findViewById(R.id.assignment_card);
+            mainLayout = itemView.findViewById(R.id.notes_card);
         }
     }
 }

@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.solution.UploadSolutionActivity"></activity>
+        <activity android:name=".activities.notes.NotesActivity"></activity>
+        <activity android:name=".activities.notes.NotesListActivity" />
+        <activity android:name=".activities.notes.EditNotesActivity" />
+        <activity android:name=".activities.solution.UploadSolutionActivity" />
         <activity android:name=".activities.assignment.EditAssignmentActivity" />
         <activity android:name=".activities.assignment.AssignmentListActivity" />
         <activity android:name=".activities.assignment.AssignmentActivity" />
