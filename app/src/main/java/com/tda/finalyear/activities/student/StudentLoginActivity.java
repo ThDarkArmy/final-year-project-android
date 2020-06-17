@@ -33,7 +33,10 @@ public class StudentLoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_student);
+
         bind();
+        email.setText("rajputanjali4421@gmail.com");
+        password.setText("password");
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

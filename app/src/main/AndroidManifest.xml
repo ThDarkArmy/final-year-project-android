@@ -64,6 +64,7 @@
         <activity android:name=".activities.student.StudentActivity" />
         <activity android:name=".activities.student.StudentSignupActivity" />
         <activity android:name=".activities.student.StudentLoginActivity" />
+        <activity android:name=".activities.student.StudentProfileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
