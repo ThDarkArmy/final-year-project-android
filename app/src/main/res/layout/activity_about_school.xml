@@ -4,165 +4,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-               android:orientation="vertical">
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="About Us"
-                   android:textColor="#ffffff"
-                   android:elevation="10dp"
-                   android:padding="50px"
-                   android:textSize="70px"
-                   android:textAlignment="center"
-                   android:gravity="center_horizontal"
-                   android:background="#8BC34A"
-                   android:id="@+id/header"
-                   >
-               </TextView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="About"
+                    android:textColor="#ffffff"
+                    android:elevation="10dp"
+                    android:padding="50px"
+                    android:textSize="70px"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:background="#8BC34A"
+                    android:id="@+id/header"
+                    >
+                </TextView>
 
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_below="@+id/header"
-                   android:id="@+id/layout1"
-                   android:weightSum="100">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/header"
+                    android:id="@+id/layout1"
+                    android:weightSum="100">
 
-                       <de.hdodenhof.circleimageview.CircleImageView
-                           xmlns:app="http://schemas.android.com/apk/res-auto"
-                           android:id="@+id/profile_image1"
-                           android:layout_centerHorizontal="true"
-                           android:layout_width="150dp"
-                           android:layout_height="150dp"
-                           android:elevation="10dp"
-                           android:src="@drawable/ss"
-                           app:civ_border_width="2dp"
-                           android:layout_marginTop="50dp"
-                           app:civ_border_color="#FF000000"
-                           />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/profile_image1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:elevation="10dp"
+                            android:src="@drawable/ss"
+                            app:civ_border_width="2dp"
+                            android:layout_marginTop="50dp"
+                            app:civ_border_color="#FF000000"
+                            />
 
-                       <TextView
-                           android:layout_centerHorizontal="true"
-                           android:textSize="20dp"
-                           android:gravity="center"
-                           android:layout_width="200dp"
-                           android:layout_height="match_parent"
-                           android:id="@+id/text1"
-                           android:layout_below="@+id/profile_image1"
-                           android:text="Hello, my name is Pulkit and I m the lead developer here!"
-                           android:layout_margin="30dp">
+                        <TextView
 
-                       </TextView>
+                            android:id="@+id/text1"
+                            android:layout_width="355dp"
+                            android:layout_height="58dp"
+                            android:layout_below="@+id/profile_image1"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:text="Name: Delhi public school"
+                            android:textSize="20dp">
 
-               </RelativeLayout>
+                        </TextView>
+                        <TextView
 
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_below="@+id/layout1"
-                   android:id="@+id/layout2"
-                   android:weightSum="100">
+                            android:id="@+id/text2"
+                            android:layout_width="355dp"
+                            android:layout_height="58dp"
+                            android:layout_below="@+id/profile_image1"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="70dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:text="Location: Delhi"
+                            android:textSize="20dp">
 
-                       <de.hdodenhof.circleimageview.CircleImageView
-                           xmlns:app="http://schemas.android.com/apk/res-auto"
-                           android:id="@+id/profile_image2"
-                           android:layout_centerHorizontal="true"
-                           android:layout_width="150dp"
-                           android:layout_height="150dp"
-                           android:elevation="10dp"
-                           android:src="@drawable/ss"
-                           app:civ_border_width="2dp"
-                           android:layout_marginTop="50dp"
-                           app:civ_border_color="#FF000000"
-                           />
+                        </TextView>
+                        <TextView
 
-                       <TextView
-                           android:layout_centerHorizontal="true"
-                           android:textSize="20dp"
-                           android:gravity="center"
-                           android:layout_width="200dp"
-                           android:layout_height="match_parent"
-                           android:id="@+id/text2"
-                           android:layout_below="@+id/profile_image2"
-                           android:text="Hello, my name is Pulkit and I m the lead developer here!"
-                           android:layout_margin="30dp">
+                            android:id="@+id/text3"
+                            android:layout_width="355dp"
+                            android:layout_height="58dp"
+                            android:layout_below="@+id/profile_image1"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="110dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:text="Medium: CBSE"
+                            android:textSize="20dp">
 
-                       </TextView>
+                        </TextView>
+                        <TextView
 
-               </RelativeLayout>
+                            android:id="@+id/text5"
+                            android:layout_width="355dp"
+                            android:layout_height="58dp"
+                            android:layout_below="@+id/profile_image1"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="150dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:text="Mob No : 2342123434"
+                            android:textSize="20dp">
 
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_below="@+id/layout2"
-                   android:id="@+id/layout3"
-                   android:weightSum="100">
+                        </TextView>
 
-                       <de.hdodenhof.circleimageview.CircleImageView
-                           xmlns:app="http://schemas.android.com/apk/res-auto"
-                           android:id="@+id/profile_image3"
-                           android:layout_centerHorizontal="true"
-                           android:layout_width="150dp"
-                           android:layout_height="150dp"
-                           android:elevation="10dp"
-                           android:src="@drawable/ss"
-                           app:civ_border_width="2dp"
-                           android:layout_marginTop="50dp"
-                           app:civ_border_color="#FF000000"
-                           />
 
-                       <TextView
-                           android:layout_centerHorizontal="true"
-                           android:textSize="20dp"
-                           android:gravity="center"
-                           android:layout_width="200dp"
-                           android:layout_height="match_parent"
-                           android:id="@+id/text3"
-                           android:layout_below="@+id/profile_image3"
-                           android:text="Hello, my name is Pulkit and I m the lead developer here!"
-                           android:layout_margin="30dp">
+                        <TextView
 
-                       </TextView>
+                            android:id="@+id/text7"
+                            android:layout_width="355dp"
+                            android:layout_height="58dp"
+                            android:layout_below="@+id/profile_image1"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="190dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:text="Email: delhipublic@school.com"
+                            android:textSize="20dp">
 
-               </RelativeLayout>
+                        </TextView>
 
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_below="@+id/layout3"
-                   android:id="@+id/layout4"
-                   android:weightSum="100">
 
-                       <de.hdodenhof.circleimageview.CircleImageView
-                           xmlns:app="http://schemas.android.com/apk/res-auto"
-                           android:id="@+id/profile_image4"
-                           android:layout_centerHorizontal="true"
-                           android:layout_width="150dp"
-                           android:layout_height="150dp"
-                           android:elevation="10dp"
-                           android:src="@drawable/ss"
-                           app:civ_border_width="2dp"
-                           android:layout_marginTop="50dp"
-                           app:civ_border_color="#FF000000"
-                           />
 
-                       <TextView
-                           android:layout_centerHorizontal="true"
-                           android:textSize="20dp"
-                           android:gravity="center"
-                           android:layout_width="200dp"
-                           android:layout_height="match_parent"
-                           android:id="@+id/text4"
-                           android:layout_below="@+id/profile_image4"
-                           android:text="Hello, my name is Pulkit and I m the lead developer here!"
-                           android:layout_margin="30dp">
+                </RelativeLayout>
 
-                       </TextView>
-
-               </RelativeLayout>
-       </RelativeLayout>
+</RelativeLayout>
 
 
 </ScrollView>
