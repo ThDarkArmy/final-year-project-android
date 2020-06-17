@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollViewAddHoliday"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:src="@drawable/ss"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/logo"
+            />
+        <TextView
+            android:id="@+id/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Edit Profile"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="15pt">
+        </TextView>
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Name"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:paddingTop="30dp"
+            android:inputType="text"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_class"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Class"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+            android:inputType="date"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_dob"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="DOB"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+            android:inputType="text"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_gender"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Gender"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+
+            android:gravity="top"
+
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_address"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Address"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+
+            android:gravity="top"
+
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_bloodgroup"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Blood Group"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+
+            android:gravity="top"
+
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_mob"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Mob No."
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+
+            android:gravity="top"
+
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edit_pincode"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Pin Code"
+            android:textSize="25dp"
+            android:paddingTop="20dp"
+
+            android:gravity="top"
+
+            >
+        </EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="UPDATE PROFILE"
+                android:id="@+id/edit_event"
+                android:layout_centerHorizontal="true"
+                android:background="#8CE68A"
+                android:paddingTop="0dp"
+                android:textSize="20dp"
+                android:layout_marginTop="2dp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
