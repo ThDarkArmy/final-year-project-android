@@ -2,6 +2,7 @@ package com.tda.finalyear.api;
 
 import com.tda.finalyear.adapter.AttendanceAdapter;
 import com.tda.finalyear.services.AdminService;
+import com.tda.finalyear.services.AssignmentService;
 import com.tda.finalyear.services.AttendanceService;
 import com.tda.finalyear.services.EventService;
 import com.tda.finalyear.services.ExamService;
@@ -59,4 +60,6 @@ public class RetrofitClient {
     public ExamService getExamService(){ return retrofit.create(ExamService.class); }
 
     public AttendanceService getAttendanceService(){ return retrofit.create(AttendanceService.class); }
+
+    public AssignmentService getAssignmentService(){ return retrofit.create(AssignmentService.class); }
 }

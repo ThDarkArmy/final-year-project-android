@@ -62,7 +62,7 @@ public class StudentSignupActivity extends AppCompatActivity {
     public void SignUp(){
 
         if(validation()){
-            Student student = new Student(name.getText().toString(),Integer.parseInt(roll.getText().toString()),email.getText().toString(), Integer.parseInt(mobile.getText().toString()), std.getText().toString(),password.getText().toString());
+            Student student = new Student(name.getText().toString(),Integer.parseInt(roll.getText().toString()),email.getText().toString(), mobile.getText().toString(), std.getText().toString(),password.getText().toString());
                 Call<ResponseBody> call = RetrofitClient.getInstance()
                         .getStudentService()
                         .signUpStudent(student);

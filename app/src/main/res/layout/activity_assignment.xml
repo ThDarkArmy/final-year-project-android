@@ -3,49 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Spinner
-        android:id="@+id/class_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:entries="@array/class_arrays"
-        android:prompt="@string/class_prompt"
-        style="@android:style/Widget.Spinner"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
-        android:layout_below="@id/class_spinner"
-        android:layout_marginTop="2dp">
-        <EditText
+        android:layout_marginTop="15dp">
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/go_back_to_assignments"
+            android:id="@+id/back_to_assignments"
+
+            />
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_weight="0.9"
             android:layout_marginLeft="2dp"
-            android:background="@drawable/textinputborder"
-            android:hint="Title"
+            android:text="Title"
+            android:textSize="25dp"
             android:paddingLeft="10dp"
             android:inputType="textVisiblePassword" >
 
-        </EditText>
-        <Button
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="0"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/insert_file"
-            android:id="@+id/chose_file"
+        </TextView>
 
-            />
         <Button
-            android:layout_width="50dp"
-            android:layout_height="55dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="0"
             android:layout_marginRight="5dp"
-            android:background="@drawable/upload_file"
-            android:id="@+id/upload_file"
+            android:background="@drawable/go_to_add_solution"
+            android:id="@+id/upload_solution"
             />
 
     </LinearLayout>

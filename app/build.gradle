@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.tda.finalyear"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.nbsp:materialfilepicker:1.9.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

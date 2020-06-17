@@ -31,6 +31,7 @@ import com.tda.finalyear.api.RetrofitClient;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -41,8 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UploadAssignmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnPageChangeListener, OnLoadCompleteListener,
-        OnPageErrorListener {
+public class EditAssignmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnPageChangeListener, OnLoadCompleteListener, OnPageErrorListener {
 
     private int pageNumber = 0;
 
@@ -56,12 +56,17 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
     private Button choseFile, uploadFile;
     private String std;
     boolean classSelected = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_assignment);
+        setContentView(R.layout.activity_edit_assignment);
         bind();
+        String assignmentId = Objects.requireNonNull(getIntent().getStringExtra("ASSIGNMENT_ID"));
+        String ETitle = getIntent().getStringExtra("ASSIGNMENT_TITLE");
+        String EStd = getIntent().getStringExtra("ASSIGNMENT_STD");
+        Uri myUri=getIntent().getData();
+        title.setText(ETitle);
+
         initDialog();
         spinner.setOnItemSelectedListener(this);
         String[] cls = getResources().getStringArray(R.array.class_arrays);
@@ -80,7 +85,7 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
             @Override
             public void onClick(View v) {
                 if(validation()){
-                    uploadAssignment();
+                    updateAssignment(assignmentId);
                 }
             }
         });
@@ -200,7 +205,7 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
         pDialog.setCancelable(true);
     }
 
-    public void uploadAssignment(){
+    public void updateAssignment(String assignmentId){
         if (pdfPath == null) {
             Toast.makeText(this, "please select an image ", Toast.LENGTH_LONG).show();
             return;
@@ -211,11 +216,11 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
             RequestBody titleR = RequestBody.create(MediaType.parse("text/plane"), title.getText().toString());
             RequestBody stdR = RequestBody.create(MediaType.parse("text/plane"), std);
             MultipartBody.Part part = MultipartBody.Part.createFormData("assignmentFile",file.getName(), requestBody);
-            RetrofitClient.getInstance().getAssignmentService().uploadAssignment(part,titleR,stdR).enqueue(new Callback<ResponseBody>() {
+            RetrofitClient.getInstance().getAssignmentService().updateAssignment(assignmentId,part,titleR,stdR).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()){
-                        startActivity(new Intent(UploadAssignmentActivity.this,AssignmentListActivity.class));
+                        startActivity(new Intent(EditAssignmentActivity.this,AssignmentListActivity.class));
                         try {
                             Log.i("assignment", response.body().string());
                         } catch (IOException e) {
@@ -232,9 +237,11 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(UploadAssignmentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditAssignmentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
+
         }
     }
 

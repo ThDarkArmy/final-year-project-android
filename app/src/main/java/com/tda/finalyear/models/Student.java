@@ -23,7 +23,7 @@ public class Student {
     private String password;
     @SerializedName("mobile")
     @Expose
-    private Integer mobile;
+    private String mobile;
     @SerializedName("std")
     @Expose
     private String std;
@@ -36,7 +36,7 @@ public class Student {
 
 
 
-    public Student(String name, Integer roll, String email, Integer mobile, String std, String password) {
+    public Student(String name, Integer roll, String email, String mobile, String std, String password) {
         this.name = name;
         this.roll = roll;
         this.email = email;
@@ -78,11 +78,11 @@ public class Student {
         this.email = email;
     }
 
-    public Integer getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(Integer mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
