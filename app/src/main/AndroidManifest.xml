@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.AboutUs"></activity>
+        <activity android:name=".activities.teacher.EditTeacherActivityActivity"></activity>
+        <activity android:name=".activities.student.EditStudentProfileActivity" />
+        <activity android:name=".activities.AboutUs" />
         <activity android:name=".activities.student.StudentProfileActivity" />
         <activity android:name=".activities.attendance.TakeAttendanceActivity" />
         <activity android:name=".activities.notes.UploadNotesActivity" />
