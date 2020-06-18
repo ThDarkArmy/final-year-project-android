@@ -55,15 +55,15 @@ public class FeePaymentActivity extends AppCompatActivity {
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> studentId = new HashMap<>();
-                studentId.put("id", student.getId());
-                payment(studentId);
+                Map<String, String> id = new HashMap<>();
+                id.put("id", student.getId());
+                payment(id);
             }
         });
     }
 
-    private void payment(Map<String, String> studentId) {
-        Call<ResponseBody> call = RetrofitClient.getInstance().getStudentService().feePayment(studentId);
+    private void payment(Map<String, String> id) {
+        Call<ResponseBody> call = RetrofitClient.getInstance().getStudentService().feePayment(id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
