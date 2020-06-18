@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.tda.finalyear.R;
 import com.tda.finalyear.adapter.DefaulterStudentFeeAdapter;
 import com.tda.finalyear.api.RetrofitClient;
+import com.tda.finalyear.models.Student;
 import com.tda.finalyear.models.StudentList;
 
 import org.json.JSONArray;
@@ -18,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -45,8 +48,14 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
                     try {
-                        JSONArray jsonArray = new JSONArray(response.body().string());
-                        StudentList studentList = (StudentList) jsonArray.get(0);
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        JSONArray jsonArray = jsonObject.getJSONArray("students");
+                        List<Student> student  = new ArrayList<>();
+                        int length = jsonArray.length();
+                        for(int i=0;i<length;i++){
+                            student.add((Student) jsonArray.get(0));
+                        }
+                        StudentList studentList =  new StudentList(student);
                         System.out.println("^!@#^!(@#^!@(&#^!@(#^!("+studentList);
                         defaulterStudentFeeAdapter = new DefaulterStudentFeeAdapter(studentList.getStudents(),DefaulterStudentFeeActivity.this);
                         recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
