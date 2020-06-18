@@ -37,6 +37,10 @@ import com.tda.finalyear.activities.teacher.TeacherLoginActivity;
 import com.tda.finalyear.activities.teacher.TeacherProfileActivity;
 import com.tda.finalyear.activities.teacher.TeachersListActivity;
 import com.tda.finalyear.models.AssignmentList;
+import com.tda.finalyear.models.EventList;
+import com.tda.finalyear.models.Student;
+
+import java.util.Objects;
 
 public class StudentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
@@ -44,6 +48,8 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    Student student;
+    TextView name, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,44 +57,60 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
         bind();
+        student = (Student) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        name = headerView.findViewById(R.id.nav_header_name);
+        email = headerView.findViewById(R.id.nav_header_email);
+        name.setText(student.getName());
+        email.setText(student.getEmail());
         holiday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, HolidayListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, HolidayListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, EventListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, EventListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, NoticeListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, NoticeListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         facility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, FacilityListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, FacilityListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         exam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, ExamListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, ExamListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
 
             }
         });
@@ -96,28 +118,36 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
         assignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, AssignmentListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, AssignmentListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, NotesListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, NotesListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         fees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, FeeListActivity.class));
+                Intent intent = new Intent(StudentActivity.this, FeeListActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
 
         studentProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, StudentProfileActivity.class));
+                Intent intent = new Intent(StudentActivity.this, StudentProfileActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
             }
         });
     }
@@ -152,10 +182,14 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
         switch (menuItem.getItemId()) {
 
             case R.id.nav_home :
-                startActivity(new Intent(StudentActivity.this, TeacherActivity.class));
+                Intent intent = new Intent(StudentActivity.this, StudentActivity.class);
+                intent.putExtra("CLASS_TYPE", student);
+                startActivity(intent);
                 break;
             case R.id.profile :
-                startActivity(new Intent(StudentActivity.this, TeacherProfileActivity.class));
+                Intent intent1 = new Intent(StudentActivity.this, StudentProfileActivity.class);
+                intent1.putExtra("CLASS_TYPE", student);
+                startActivity(intent1);
                 break;
             case R.id.teachers :
                 startActivity(new Intent(StudentActivity.this, TeachersListActivity.class));

@@ -19,6 +19,7 @@ import com.tda.finalyear.R;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.ErrorPojo;
 import com.tda.finalyear.models.Student;
+import com.tda.finalyear.models.StudentWithToken;
 
 import java.io.IOException;
 
@@ -73,8 +74,11 @@ public class StudentSignupActivity extends AppCompatActivity {
                         try{
                             if(response.isSuccessful()) {
                                 String str = response.body().string();
-                                Log.i("signup", str);
+                                StudentWithToken studentWithToken = new GsonBuilder().create().fromJson(str,StudentWithToken.class);
+                                Log.i("classSt", String.valueOf(studentWithToken.getClass()));
+                                Log.i("login", studentWithToken.toString());
                                 Intent intent = new Intent(StudentSignupActivity.this, StudentActivity.class);
+                                intent.putExtra("CLASS_TYPE",studentWithToken.getStudent());
                                 startActivity(intent);
                             }else{
                                 Gson gson = new GsonBuilder().create();

@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.Admin;
+import com.tda.finalyear.models.AdminResponse;
 import com.tda.finalyear.models.ErrorPojo;
 
 import java.io.IOException;
@@ -63,7 +64,9 @@ public class AdminSignupActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         String str = response.body().string();
                         Log.i("adminsignup", str);
+                        AdminResponse adminResponse = new GsonBuilder().create().fromJson(str,AdminResponse.class);
                         Intent intent = new Intent(AdminSignupActivity.this, AdminActivity.class);
+                        intent.putExtra("CLASS_TYPE", adminResponse.getAdmin());
                         startActivity(intent);
                     }else{
                         Gson gson = new GsonBuilder().create();

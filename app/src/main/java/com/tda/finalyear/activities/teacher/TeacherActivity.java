@@ -9,10 +9,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.tda.finalyear.R;
@@ -27,86 +29,114 @@ import com.tda.finalyear.activities.notes.UploadNotesActivity;
 import com.tda.finalyear.activities.notice.NoticeListActivity;
 import com.tda.finalyear.activities.school.AboutSchoolActivity;
 import com.tda.finalyear.activities.student.StudentsListActivity;
+import com.tda.finalyear.models.FacilityList;
+import com.tda.finalyear.models.Student;
 import com.tda.finalyear.models.Teacher;
+
+import java.util.Objects;
 
 public class TeacherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     RelativeLayout holiday, event, notice, facility, exam, assignment, note, attendance, teacherProfile;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    TextView name, email;
     Toolbar toolbar;
+    Teacher teacher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
         bind();
+        teacher = (Teacher) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
+
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        name = headerView.findViewById(R.id.nav_header_name);
+        email = headerView.findViewById(R.id.nav_header_email);
+        name.setText(teacher.getName());
+        email.setText(teacher.getEmail());
         holiday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, HolidayListActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, HolidayListActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
             }
         });
 
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, EventListActivity.class));
-            }
+                Intent intent = new Intent(TeacherActivity.this, EventListActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);            }
         });
 
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, NoticeListActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, NoticeListActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
             }
         });
 
         facility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, FacilityListActivity.class));
-            }
+                Intent intent = new Intent(TeacherActivity.this, FacilityList.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);            }
         });
 
         exam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, ExamListActivity.class));
-            }
+                Intent intent = new Intent(TeacherActivity.this, ExamListActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);            }
         });
 
         assignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, UploadAssignmentActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, UploadAssignmentActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
             }
         });
 
         note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, UploadNotesActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, UploadNotesActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
             }
         });
 
         attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, TakeAttendanceActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, TakeAttendanceActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
             }
         });
 
         teacherProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, TeacherProfileActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, TeacherProfileActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
             }
         });
     }
@@ -134,6 +164,7 @@ public class TeacherActivity extends AppCompatActivity implements NavigationView
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        name = findViewById(R.id.nav_header_name);
     }
 
     @Override
@@ -141,10 +172,14 @@ public class TeacherActivity extends AppCompatActivity implements NavigationView
         switch (menuItem.getItemId()) {
 
             case R.id.nav_home :
-                startActivity(new Intent(TeacherActivity.this, TeacherActivity.class));
+                Intent intent = new Intent(TeacherActivity.this, TeacherActivity.class);
+                intent.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent);
                 break;
             case R.id.profile :
-                startActivity(new Intent(TeacherActivity.this, TeacherProfileActivity.class));
+                Intent intent1 = new Intent(TeacherActivity.this, TeacherProfileActivity.class);
+                intent1.putExtra("CLASS_TYPE",teacher);
+                startActivity(intent1);
                 break;
             case R.id.teachers :
                 startActivity(new Intent(TeacherActivity.this, TeachersListActivity.class));

@@ -10,6 +10,7 @@ import com.tda.finalyear.services.FeeService;
 import com.tda.finalyear.services.HolidayService;
 import com.tda.finalyear.services.NotesService;
 import com.tda.finalyear.services.NoticeService;
+import com.tda.finalyear.services.SolutionService;
 import com.tda.finalyear.services.StudentService;
 import com.tda.finalyear.services.TeacherService;
 
@@ -64,4 +65,6 @@ public class RetrofitClient {
     public AssignmentService getAssignmentService(){ return retrofit.create(AssignmentService.class); }
 
     public NotesService getNotesService(){ return retrofit.create(NotesService.class); }
+
+    public SolutionService getSolutionService(){ return retrofit.create(SolutionService.class); }
 }

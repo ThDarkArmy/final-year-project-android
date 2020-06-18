@@ -3,7 +3,10 @@ package com.tda.finalyear.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FeeHistory {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class FeeHistory implements Serializable {
 
     @SerializedName("isPaid")
     @Expose

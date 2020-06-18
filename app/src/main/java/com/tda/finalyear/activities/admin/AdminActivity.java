@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
@@ -26,12 +28,17 @@ import com.tda.finalyear.activities.notice.AddNoticeActivity;
 import com.tda.finalyear.activities.school.AboutSchoolActivity;
 import com.tda.finalyear.activities.student.StudentsListActivity;
 import com.tda.finalyear.activities.teacher.TeachersListActivity;
+import com.tda.finalyear.models.Admin;
+
+import java.util.Objects;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RelativeLayout addHoliday, addEvent, addNotice, addFacility, addFee, addExam, adminProfile;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    TextView name, email;
+    Admin admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +47,18 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_admin);
 
         bind();
+        admin = (Admin)Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        name = headerView.findViewById(R.id.nav_header_name);
+        email = headerView.findViewById(R.id.nav_header_email);
+        name.setText(admin.getName());
+        email.setText(admin.getEmail());
 
         addHoliday.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,36 +9,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
-        android:layout_marginTop="2dp">
-        <EditText
+        android:layout_marginTop="15dp">
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/go_back_to_assignments"
+            android:id="@+id/back_to_solutions"
+
+            />
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_weight="0.9"
             android:layout_marginLeft="2dp"
-            android:background="@drawable/textinputborder"
-            android:hint="Name"
+            android:text="Name"
+            android:textSize="25dp"
             android:paddingLeft="10dp"
             android:inputType="textVisiblePassword" >
 
-        </EditText>
-        <Button
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="0"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/insert_file"
-            android:id="@+id/chose_file"
-
-            />
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="55dp"
-            android:layout_weight="0"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/upload_file"
-            android:id="@+id/upload_file"
-            />
+        </TextView>
 
     </LinearLayout>
     <com.github.barteksc.pdfviewer.PDFView

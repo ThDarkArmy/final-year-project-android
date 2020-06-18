@@ -27,10 +27,12 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.shockwave.pdfium.PdfDocument;
 import com.tda.finalyear.R;
 import com.tda.finalyear.api.RetrofitClient;
+import com.tda.finalyear.models.Teacher;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -56,12 +58,14 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
     private Button choseFile, uploadFile;
     private String std;
     boolean classSelected = false;
+    Teacher teacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_assignment);
         bind();
+        teacher = (Teacher) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         initDialog();
         spinner.setOnItemSelectedListener(this);
         String[] cls = getResources().getStringArray(R.array.class_arrays);
@@ -215,7 +219,9 @@ public class UploadAssignmentActivity extends AppCompatActivity implements Adapt
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()){
-                        startActivity(new Intent(UploadAssignmentActivity.this,AssignmentListActivity.class));
+                        Intent intent = new Intent(UploadAssignmentActivity.this,AssignmentListActivity.class);
+                        intent.putExtra("CLASS_TYPE", teacher);
+                        startActivity(intent);
                         try {
                             Log.i("assignment", response.body().string());
                         } catch (IOException e) {

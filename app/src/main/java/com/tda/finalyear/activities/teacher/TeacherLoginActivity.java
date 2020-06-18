@@ -17,6 +17,7 @@ import com.tda.finalyear.R;
 import com.tda.finalyear.activities.student.StudentLoginActivity;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.ErrorPojo;
+import com.tda.finalyear.models.TeacherResponse;
 
 import java.io.IOException;
 
@@ -64,8 +65,10 @@ public class TeacherLoginActivity extends AppCompatActivity {
                 try{
                     if(response.isSuccessful()){
                         String str = response.body().string();
-                        Log.i("loginteacher", str);
+                        TeacherResponse teacherResponse = new GsonBuilder().create().fromJson(str,TeacherResponse.class);
+                        Log.i("loginTeacher", teacherResponse.toString());
                         Intent intent = new Intent(TeacherLoginActivity.this, TeacherActivity.class);
+                        intent.putExtra("CLASS_TYPE",teacherResponse.getTeacher());
                         startActivity(intent);
                     }else{
                         Gson gson = new GsonBuilder().create();

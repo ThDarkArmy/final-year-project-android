@@ -1,6 +1,9 @@
 package com.tda.finalyear.models;
 
-public class Teacher {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Teacher implements Serializable {
     private String name;
     private String classTeacherOfClass;
     private String email;
@@ -56,5 +59,16 @@ public class Teacher {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "name='" + name + '\'' +
+                ", classTeacherOfClass='" + classTeacherOfClass + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

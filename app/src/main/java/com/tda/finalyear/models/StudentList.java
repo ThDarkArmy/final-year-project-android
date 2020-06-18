@@ -1,10 +1,12 @@
 package com.tda.finalyear.models;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StudentList {
+@SuppressWarnings("serial")
+public class StudentList implements Serializable {
 
     @SerializedName("students")
     @Expose

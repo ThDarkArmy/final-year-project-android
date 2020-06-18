@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.notes.NotesActivity"></activity>
+        <activity android:name=".activities.solution.SolutionActivity"></activity>
+        <activity android:name=".activities.solution.SolutionListActivity" />
+        <activity android:name=".activities.notes.NotesActivity" />
         <activity android:name=".activities.notes.NotesListActivity" />
         <activity android:name=".activities.notes.EditNotesActivity" />
         <activity android:name=".activities.solution.UploadSolutionActivity" />

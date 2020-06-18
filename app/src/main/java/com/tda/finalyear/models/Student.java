@@ -1,10 +1,12 @@
 package com.tda.finalyear.models;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Student {
+@SuppressWarnings("serial")
+public class Student implements Serializable {
 
     @SerializedName("_id")
     @Expose
@@ -110,4 +112,18 @@ public class Student {
         this.feeHistory = feeHistory;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", roll=" + roll +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", std='" + std + '\'' +
+                ", attendanceHistory=" + attendanceHistory +
+                ", feeHistory=" + feeHistory +
+                '}';
+    }
 }

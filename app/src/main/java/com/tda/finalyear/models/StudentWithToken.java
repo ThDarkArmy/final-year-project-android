@@ -3,7 +3,10 @@ package com.tda.finalyear.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StudentWithToken {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class StudentWithToken implements Serializable {
     @SerializedName("token")
     @Expose
     private String token;

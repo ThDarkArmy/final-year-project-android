@@ -1,4 +1,4 @@
-package com.tda.finalyear.activities.assignment;
+package com.tda.finalyear.activities.solution;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
 import com.tda.finalyear.adapter.AssignmentAdapter;
+import com.tda.finalyear.adapter.SolutionAdapter;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.AssignmentList;
 import com.tda.finalyear.models.ErrorPojo;
+import com.tda.finalyear.models.SolutionList;
 import com.tda.finalyear.models.Student;
 
 import java.util.Objects;
@@ -24,44 +26,39 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssignmentListActivity extends AppCompatActivity {
+public class SolutionListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     String classType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment_list);
-        recyclerView = findViewById(R.id.assignment_recycler);
-        classType = Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE").getClass().getName());
+        setContentView(R.layout.activity_solution_list);
+        recyclerView = findViewById(R.id.solution_recycler);
+        //classType = Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE").getClass().getName());
         getAssignmentList();
     }
 
     public void getAssignmentList(){
-        RetrofitClient.getInstance().getAssignmentService().getAssignmentList().enqueue(new Callback<ResponseBody>() {
+        RetrofitClient.getInstance().getSolutionService().getSolutions().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
                     try{
-                        AssignmentList assignmentList = new GsonBuilder().create().fromJson(response.body().string(), AssignmentList.class);
-                        AssignmentAdapter assignmentAdapter;
-                        if(classType.equals("com.tda.finalyear.models.Teacher")){
-                            assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, classType);
-                        }else{
-                            assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, (Student) getIntent().getSerializableExtra("CLASS_TYPE"));
-                        }
+                        SolutionList solutionList = new GsonBuilder().create().fromJson(response.body().string(), SolutionList.class);
+                        SolutionAdapter solutionAdapter = new SolutionAdapter(SolutionListActivity.this, solutionList);
 
-                        recyclerView.setLayoutManager(new LinearLayoutManager(AssignmentListActivity.this));
-                        recyclerView.setAdapter(assignmentAdapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(SolutionListActivity.this));
+                        recyclerView.setAdapter(solutionAdapter);
                     }catch(Exception e){
                         Log.i("assignmentList", e.getMessage());
                     }
                 }else{
                     try{
                         ErrorPojo errorPojo = new GsonBuilder().create().fromJson(response.errorBody().string(), ErrorPojo.class);
-                        Toast.makeText(AssignmentListActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SolutionListActivity.this, errorPojo.getMsg(), Toast.LENGTH_SHORT).show();
                     }catch (Exception e){
-                        Toast.makeText(AssignmentListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SolutionListActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

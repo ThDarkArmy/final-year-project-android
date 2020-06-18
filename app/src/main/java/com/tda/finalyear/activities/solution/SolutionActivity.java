@@ -1,4 +1,4 @@
-package com.tda.finalyear.activities.assignment;
+package com.tda.finalyear.activities.solution;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +28,7 @@ import com.tda.finalyear.R;
 import com.tda.finalyear.activities.solution.UploadSolutionActivity;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.AssignmentList;
+import com.tda.finalyear.models.SolutionList;
 import com.tda.finalyear.models.Student;
 
 import java.io.File;
@@ -43,11 +44,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssignmentActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener,
+public class SolutionActivity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener,
         OnPageErrorListener {
 
     TextView title;
-    Button backToAssignments, uploadSolution;
+    Button backToSolutions;
     private int pageNumber = 0;
 
     private String pdfFileName;
@@ -60,30 +61,21 @@ public class AssignmentActivity extends AppCompatActivity implements OnPageChang
         setContentView(R.layout.activity_assignment);
         bind();
         initDialog();
-        String assignmentId = Objects.requireNonNull(getIntent().getStringExtra("ASSIGNMENT_ID"));
-        String ETitle = getIntent().getStringExtra("ASSIGNMENT_TITLE");
-        String EStd = getIntent().getStringExtra("ASSIGNMENT_STD");
-        String EFilePath = getIntent().getStringExtra("ASSIGNMENT_FILE_PATH");
-        student = (Student) getIntent().getSerializableExtra("STUDENT");
+        String assignmentId = Objects.requireNonNull(getIntent().getStringExtra("SOLUTION_ID"));
+        String ETitle = getIntent().getStringExtra("SOLUTION_STUDENT_NAME");
+        //String EStd = getIntent().getStringExtra("ASSIGNMENT_STD");
+        String EFilePath = getIntent().getStringExtra("SOLUTION_FILE_PATH");
+        //student = (Student) getIntent().getSerializableExtra("STUDENT");
         Uri myUri=getIntent().getData();
         title.setText(ETitle);
         displayFromFile(new File(EFilePath));
-        backToAssignments.setOnClickListener(new View.OnClickListener() {
+        backToSolutions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AssignmentActivity.this, AssignmentListActivity.class));
+                startActivity(new Intent(SolutionActivity.this, SolutionListActivity.class));
             }
         });
 
-        uploadSolution.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AssignmentActivity.this, UploadSolutionActivity.class);
-                intent.putExtra("STUDENT", student);
-                intent.putExtra("ASSIGNMENT_ID", assignmentId);
-                startActivity(intent);
-            }
-        });
     }
 
     // display file
@@ -97,7 +89,7 @@ public class AssignmentActivity extends AppCompatActivity implements OnPageChang
                 .defaultPage(pageNumber)
                 .onPageChange(this)
                 .enableAnnotationRendering(true)
-                .onLoad(AssignmentActivity.this)
+                .onLoad(this)
                 .scrollHandle(new DefaultScrollHandle(this))
                 .spacing(10) // in dp
                 .onPageError(this)
@@ -172,9 +164,8 @@ public class AssignmentActivity extends AppCompatActivity implements OnPageChang
     }
 
     public void bind(){
-            title = findViewById(R.id.title);
-            backToAssignments = findViewById(R.id.back_to_assignments);
-            uploadSolution = findViewById(R.id.upload_solution);
-            pdfView = findViewById(R.id.pdfView);
+        title = findViewById(R.id.title);
+        backToSolutions = findViewById(R.id.back_to_assignments);
+        pdfView = findViewById(R.id.pdfView);
     }
 }
