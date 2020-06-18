@@ -43,9 +43,9 @@ public class FeePaymentActivity extends AppCompatActivity {
         name.setText(student.getName());
         feeHistory = student.getFeeHistory().get(student.getFeeHistory().size() - 1);
         System.out.println("!@#!@#!#!#+"+feeHistory.toString());
-//        examFee.setText(feeHistory.getExamFee());
-//        tutionFee.setText(feeHistory.getTuitionFee());
-//        admissionFee.setText(feeHistory.getAdmissionFee());
+        examFee.setText(feeHistory.getExamFee().toString());
+        tutionFee.setText(feeHistory.getTuitionFee().toString());
+        admissionFee.setText(feeHistory.getAdmissionFee().toString());
 //        Integer tution_fee = Integer.parseInt(tutionFee.getText().toString());
 //        Integer exam_fee = Integer.parseInt(examFee.getText().toString());
 //        Integer admission_fee = Integer.parseInt(admissionFee.getText().toString());
