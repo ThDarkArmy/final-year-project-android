@@ -143,14 +143,14 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
             }
         });
 
-        studentProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StudentActivity.this, StudentProfileActivity.class);
-                intent.putExtra("CLASS_TYPE", student);
-                startActivity(intent);
-            }
-        });
+//        studentProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(StudentActivity.this, StudentProfileActivity.class);
+//                intent.putExtra("CLASS_TYPE", student);
+//                startActivity(intent);
+//            }
+//        });
 
         feePayment.setOnClickListener(new View.OnClickListener() {
             @Override
