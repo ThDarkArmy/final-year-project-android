@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tda.finalyear.R;
 import com.tda.finalyear.adapter.DefaulterStudentFeeAdapter;
 import com.tda.finalyear.api.RetrofitClient;
@@ -50,14 +51,11 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         JSONArray jsonArray = jsonObject.getJSONArray("students");
-                        System.out.println("@#@%$^%&^&*(^^%$#%$#"+jsonArray.toString());
+//                        System.out.println("@#@%$^%&^&*(^^%$#%$#"+jsonArray.toString());
                         List<Student> student  = new ArrayList<>();
-                        int length = jsonArray.length();
-                        for(int i=0;i<length;i++){
-                            student.add((Student) jsonArray.get(0));
-                        }
-                        StudentList studentList =  new StudentList(student);
-                        System.out.println("^!@#^!(@#^!@(&#^!@(#^!("+studentList);
+                        ObjectMapper mapper = new ObjectMapper();
+                        StudentList studentList = mapper.convertValue(jsonArray,StudentList.class);
+                        System.out.println("$%$^%$^$^$^%$%"+studentList);
                         defaulterStudentFeeAdapter = new DefaulterStudentFeeAdapter(studentList.getStudents(),DefaulterStudentFeeActivity.this);
                         recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
                         recyclerView.setAdapter(defaulterStudentFeeAdapter);
