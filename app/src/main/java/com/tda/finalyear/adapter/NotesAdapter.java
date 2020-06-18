@@ -60,12 +60,47 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditNotesActivity.class);
-                intent.putExtra("NOTES_ID", notes.getNotes().get(position).getId());
-                intent.putExtra("NOTES_STD", notes.getNotes().get(position).getStd());
-                intent.putExtra("NOTES_TITLE", notes.getNotes().get(position).getTitle());
-                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()));
-                context.startActivity(intent);
+                RetrofitClient.getInstance().getNotesService().downloadFileWithDynamicUrlAsync(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()).enqueue(new Callback<ResponseBody>() {
+                    @SuppressLint("StaticFieldLeak")
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if(response.isSuccessful()){
+                            new AsyncTask<Void, Void, Void>() {
+                                @Override
+                                protected Void doInBackground(Void... voids) {
+                                    boolean writtenToDisk = writeResponseBodyToDisk(response.body(), notes.getNotes().get(position).getTitle());
+                                    Log.i("fileDownload", "file download was a success? " + writtenToDisk);
+                                    Log.i("fileIn", file.getPath());
+                                    Intent intent = new Intent(context, EditNotesActivity.class);
+                                    intent.putExtra("NOTES_ID", notes.getNotes().get(position).getId());
+                                    intent.putExtra("NOTES_STD", notes.getNotes().get(position).getStd());
+                                    intent.putExtra("NOTES_TITLE", notes.getNotes().get(position).getTitle());
+                                    intent.putExtra("NOTES_FILE_PATH", file.getPath());
+                                    intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()));
+                                    context.startActivity(intent);
+                                    return null;
+                                }
+                            }.execute();
+                        }else{
+                            try {
+                                Log.i("else",response.errorBody().string());
+                            } catch (IOException e) {
+                                Log.i("else",e.getMessage());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+//                Intent intent = new Intent(context, EditNotesActivity.class);
+//                intent.putExtra("NOTES_ID", notes.getNotes().get(position).getId());
+//                intent.putExtra("NOTES_STD", notes.getNotes().get(position).getStd());
+//                intent.putExtra("NOTES_TITLE", notes.getNotes().get(position).getTitle());
+//                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+notes.getNotes().get(position).getNotesFile()));
+//                context.startActivity(intent);
             }
         });
 

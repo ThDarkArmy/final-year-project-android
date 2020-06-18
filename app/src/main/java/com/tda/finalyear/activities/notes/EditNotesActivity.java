@@ -67,6 +67,7 @@ public class EditNotesActivity extends AppCompatActivity implements AdapterView.
         String assignmentId = Objects.requireNonNull(getIntent().getStringExtra("NOTES_ID"));
         String ETitle = getIntent().getStringExtra("NOTES_TITLE");
         String EStd = getIntent().getStringExtra("NOTES_STD");
+        String EFilePath = getIntent().getStringExtra("NOTES_FILE_PATH");
         Uri myUri=getIntent().getData();
         title.setText(ETitle);
 
@@ -76,6 +77,7 @@ public class EditNotesActivity extends AppCompatActivity implements AdapterView.
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, cls);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        displayFromFile(new File(EFilePath));
 
         choseFile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,12 +220,12 @@ public class EditNotesActivity extends AppCompatActivity implements AdapterView.
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/pdf"), file);
             RequestBody titleR = RequestBody.create(MediaType.parse("text/plane"), title.getText().toString());
             RequestBody stdR = RequestBody.create(MediaType.parse("text/plane"), std);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("assignmentFile",file.getName(), requestBody);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("notesFile",file.getName(), requestBody);
             RetrofitClient.getInstance().getNotesService().updateNotes(assignmentId,part,titleR,stdR).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()){
-                        startActivity(new Intent(EditNotesActivity.this, NotesList.class));
+                        startActivity(new Intent(EditNotesActivity.this, NotesListActivity.class));
                         try {
                             Log.i("assignment", response.body().string());
                         } catch (IOException e) {

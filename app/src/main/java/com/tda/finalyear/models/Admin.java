@@ -37,6 +37,13 @@ public class Admin implements Serializable {
         this.password = password;
     }
 
+    public Admin(String name, String email, String mobile, String school) {
+        this.name = name;
+        this.email = email;
+        this.mobile = mobile;
+        this.school = school;
+    }
+
     public String getId() {
         return id;
     }

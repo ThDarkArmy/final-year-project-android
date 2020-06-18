@@ -1,6 +1,7 @@
 package com.tda.finalyear.services;
 
 import com.tda.finalyear.models.Student;
+import com.tda.finalyear.models.Teacher;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -9,6 +10,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface StudentService {
@@ -24,4 +26,7 @@ public interface StudentService {
     @FormUrlEncoded
     @POST("/student/login")
     Call<ResponseBody> loginStudent(@Field("email") String email, @Field("password") String password);
+
+    @PUT("/student/{id}")
+    Call<ResponseBody> updateStudent(@Path("id") String id, @Body Student student);
 }

@@ -21,6 +21,12 @@ public class Teacher implements Serializable {
         this.mobile = mobile;
         this.password = password;
     }
+    public Teacher(String name, String classTeacherOfClass, String email, String mobile) {
+        this.name = name;
+        this.classTeacherOfClass = classTeacherOfClass;
+        this.email = email;
+        this.mobile = mobile;
+    }
 
     public String getId() {
         return id;

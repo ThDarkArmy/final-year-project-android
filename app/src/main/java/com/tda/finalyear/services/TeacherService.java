@@ -10,6 +10,8 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface TeacherService {
     @GET("/teacher")
@@ -21,4 +23,7 @@ public interface TeacherService {
     @FormUrlEncoded
     @POST("/teacher/login")
     Call<ResponseBody> loginTeacher(@Field("email") String email, @Field("password") String password);
+
+    @PUT("/teacher/{id}")
+    Call<ResponseBody> updateTeacher(@Path("id") String id, @Body Teacher teacher);
 }
