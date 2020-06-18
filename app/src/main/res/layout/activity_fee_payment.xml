@@ -11,43 +11,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fee Payment"
-            android:textColor="#ffffff"
-            android:elevation="10dp"
-            android:padding="50px"
-            android:textSize="70px"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
             android:background="#8BC34A"
-            android:id="@+id/header"
-            ></TextView>
+            android:elevation="10dp"
+            android:gravity="center_horizontal"
+            android:padding="50px"
+            android:text="Fee Payment"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="70px" />
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#5c5d5e" />
+
         <TextView
+            android:id="@+id/studentname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/studentname"
-            android:text="NAME"
-            android:textSize="25dp"
-            android:padding="10dp"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
-            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:text="NAME"
             android:textAllCaps="true"
-            ></TextView>
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:padding="10dp"
             android:text="Name"
             android:textSize="25dp">
@@ -58,18 +57,18 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#5c5d5e" />
+
         <TextView
+            android:id="@+id/texttutuion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/texttutuion"
-            android:text="Tution Fee"
-            android:textSize="25dp"
-            android:padding="10dp"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
-            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:text="Tution Fee"
             android:textAllCaps="true"
-            ></TextView>
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tuition_fee"
@@ -78,26 +77,24 @@
 
             android:padding="10dp"
             android:text="Tuition Fee"
-            android:textSize="25dp">
-
-        </TextView>
+            android:textSize="25dp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#5c5d5e" />
+
         <TextView
+            android:id="@+id/textexam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textexam"
-            android:text="Exam Fee"
-            android:textSize="25dp"
-            android:padding="10dp"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
-            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:text="Exam Fee"
             android:textAllCaps="true"
-            ></TextView>
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/exam_fee"
@@ -115,17 +112,16 @@
             android:background="#5c5d5e" />
 
         <TextView
+            android:id="@+id/textadmission"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textadmission"
-            android:text="Admission Fee"
-            android:textSize="25dp"
-            android:padding="10dp"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
-            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:text="Admission Fee"
             android:textAllCaps="true"
-            ></TextView>
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/admission_fee"
@@ -133,24 +129,24 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Admission Fee"
-            android:textSize="25dp"></TextView>
+            android:textSize="25dp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#5c5d5e" />
+
         <TextView
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/total"
-            android:text="TOTAL FEE"
-            android:textSize="25dp"
-            android:padding="10dp"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
-            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:padding="10dp"
+            android:text="TOTAL FEE"
             android:textAllCaps="true"
-            ></TextView>
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/total_fee"
@@ -167,16 +163,16 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#5c5d5e" />
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonpay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonpay"
-            android:text="Pay"
-            android:layout_marginTop="10dpdp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:padding="20dp"
-            android:textStyle="bold"
-            ></com.google.android.material.button.MaterialButton>
+            android:text="Pay"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

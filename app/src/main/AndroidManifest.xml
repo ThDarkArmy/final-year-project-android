@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.fee.FeePaymentActivity"></activity>
+        <activity android:name=".activities.admin.DefaulterStudentFeeActivity"></activity>
+        <activity android:name=".activities.fee.FeePaymentActivity" />
         <activity android:name=".activities.admin.EditAdminProfileActivity" />
         <activity android:name=".activities.solution.SolutionActivity" />
         <activity android:name=".activities.solution.SolutionListActivity" />

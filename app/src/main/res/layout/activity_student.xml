@@ -125,7 +125,6 @@
                             tools:ignore="VectorDrawableCompat" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -135,29 +134,31 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/notes"
+                        android:id="@+id/feePayment"
                         android:clickable="true">
 
                         <TextView
-                            android:id="@+id/notes_text"
+                            android:id="@+id/textView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/notes_img"
+                            android:layout_below="@id/fee_payment_image"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Notes"
-                            android:textSize="23sp" />
+                            android:text="Fees Payment"
+                            android:textSize="24sp"
+                            app:fontFamily="@font/aclonica" />
 
                         <ImageView
-                            android:id="@+id/notes_img"
+                            android:id="@+id/fee_payment_image"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/notes"
+                            app:srcCompat="@drawable/fee_payment_vector"
                             tools:ignore="VectorDrawableCompat" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+
             </LinearLayout>
             <!--            2nd linear layout-->
             <LinearLayout
@@ -418,11 +419,11 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/profile"
+                        android:id="@+id/feePaymentRelativeLayout"
                         android:clickable="true">
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/feePaymentText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/cycle"
@@ -442,7 +443,38 @@
                             tools:ignore="VectorDrawableCompat" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/notes"
+                        android:clickable="true">
+
+                        <TextView
+                            android:id="@+id/notes_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/notes_img"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="Notes"
+                            android:textSize="23sp" />
+
+                        <ImageView
+                            android:id="@+id/notes_img"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            app:srcCompat="@drawable/notes"
+                            tools:ignore="VectorDrawableCompat" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
