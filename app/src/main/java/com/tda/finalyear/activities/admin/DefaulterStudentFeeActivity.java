@@ -9,9 +9,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
 import com.tda.finalyear.adapter.DefaulterStudentFeeAdapter;
 import com.tda.finalyear.api.RetrofitClient;
+import com.tda.finalyear.models.AssignmentList;
 import com.tda.finalyear.models.Student;
 import com.tda.finalyear.models.StudentList;
 
@@ -49,17 +51,18 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
                     try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
-                        JSONArray jsonArray = jsonObject.getJSONArray("students");
-//                        System.out.println("@#@%$^%&^&*(^^%$#%$#"+jsonArray.toString());
-                        List<Student> student  = new ArrayList<>();
-                        ObjectMapper mapper = new ObjectMapper();
-                        StudentList studentList = mapper.convertValue(jsonArray,StudentList.class);
-                        System.out.println("$%$^%$^$^$^%$%"+studentList);
+                        StudentList studentList = new GsonBuilder().create().fromJson(response.body().string(), StudentList.class);
+//                        JSONObject jsonObject = new JSONObject(response.body().string());
+//                        JSONArray jsonArray = jsonObject.getJSONArray("students");
+////                        System.out.println("@#@%$^%&^&*(^^%$#%$#"+jsonArray.toString());
+//                        List<Student> student  = new ArrayList<>();
+//                        ObjectMapper mapper = new ObjectMapper();
+//                        StudentList studentList = mapper.convertValue(jsonArray,StudentList.class);
+//                        System.out.println("$%$^%$^$^$^%$%"+studentList);
                         defaulterStudentFeeAdapter = new DefaulterStudentFeeAdapter(studentList.getStudents(),DefaulterStudentFeeActivity.this);
                         recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
                         recyclerView.setAdapter(defaulterStudentFeeAdapter);
-                    } catch (IOException | JSONException e) {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }else{
