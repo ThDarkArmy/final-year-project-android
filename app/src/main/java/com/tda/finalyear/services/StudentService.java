@@ -33,7 +33,7 @@ public interface StudentService {
     @PUT("/student/{id}")
     Call<ResponseBody> updateStudent(@Path("id") String id, @Body Student student);
 
-    @POST("/payment")
+    @POST("/feepayment")
     Call<ResponseBody> feePayment (Map<String, String> studentId);
 
     @GET("/student/defaulter")
