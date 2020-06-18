@@ -8,7 +8,7 @@
     tools:context=".activities.student.StudentActivity"
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_layout"
-    tools:openDrawer="">
+    tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -414,7 +414,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:id="@+id/profile">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
