@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Teacher implements Serializable {
+    private String id;
     private String name;
     private String classTeacherOfClass;
     private String email;
@@ -19,6 +20,14 @@ public class Teacher implements Serializable {
         this.email = email;
         this.mobile = mobile;
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

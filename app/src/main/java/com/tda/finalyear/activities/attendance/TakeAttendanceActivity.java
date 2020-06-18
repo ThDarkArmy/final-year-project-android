@@ -17,16 +17,19 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.event.EventListActivity;
+import com.tda.finalyear.activities.exam.ExamListActivity;
 import com.tda.finalyear.activities.teacher.TeacherActivity;
 import com.tda.finalyear.adapter.AttendanceAdapter;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.AttendanceHistory;
 import com.tda.finalyear.models.StudentList;
+import com.tda.finalyear.models.Teacher;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -41,6 +44,7 @@ public class TakeAttendanceActivity extends AppCompatActivity implements Adapter
     Button submit;
     List<String> ids = new ArrayList<>();
     String std;
+    Teacher teacher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,7 @@ public class TakeAttendanceActivity extends AppCompatActivity implements Adapter
         spinner = findViewById(R.id.class_spinner);
         submit = findViewById(R.id.submit);
 
+        teacher = (Teacher) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         spinner.setOnItemSelectedListener(this);
 
         String[] cls = getResources().getStringArray(R.array.class_arrays);
@@ -76,7 +81,10 @@ public class TakeAttendanceActivity extends AppCompatActivity implements Adapter
                 try{
                     if(response.isSuccessful()){
                         Log.i("responseAtt", response.body().string());
-                        startActivity(new Intent(TakeAttendanceActivity.this, TeacherActivity.class));
+                        //startActivity(new Intent(TakeAttendanceActivity.this, TeacherActivity.class));
+                        Intent intent = new Intent(TakeAttendanceActivity.this, TeacherActivity.class);
+                        intent.putExtra("CLASS_TYPE",teacher);
+                        startActivity(intent);
                     }else{
                         Log.i("responseAttElse", response.errorBody().string());
                     }

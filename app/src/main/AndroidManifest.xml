@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.solution.SolutionActivity"></activity>
+        <activity android:name=".activities.admin.EditAdminProfileActivity"></activity>
+        <activity android:name=".activities.solution.SolutionActivity" />
         <activity android:name=".activities.solution.SolutionListActivity" />
         <activity android:name=".activities.notes.NotesActivity" />
         <activity android:name=".activities.notes.NotesListActivity" />
@@ -28,6 +29,7 @@
         <activity android:name=".activities.notes.UploadNotesActivity" />
         <activity android:name=".activities.assignment.UploadAssignmentActivity" />
         <activity android:name=".activities.teacher.TeacherProfileActivity" />
+        <activity android:name=".activities.teacher.EditTeacherProfileActivity" />
         <activity android:name=".activities.exam.ExamListActivity" />
         <activity android:name=".activities.fee.FeeListActivity" />
         <activity android:name=".activities.facility.FacilityListActivity" />
@@ -67,6 +69,7 @@
         <activity android:name=".activities.student.StudentSignupActivity" />
         <activity android:name=".activities.student.StudentLoginActivity" />
         <activity android:name=".activities.student.StudentProfileActivity" />
+        <activity android:name=".activities.student.EditStudentProfileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

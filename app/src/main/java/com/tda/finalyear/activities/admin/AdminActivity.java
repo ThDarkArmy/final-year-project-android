@@ -99,7 +99,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         adminProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, AdminActivity.class));
+                Intent intent = new Intent(AdminActivity.this, AdminProfileActivity.class);
+                intent.putExtra("CLASS_TYPE", admin);
+                startActivity(intent);
             }
         });
     }
@@ -135,7 +137,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 startActivity(new Intent(AdminActivity.this, AdminActivity.class));
                 break;
             case R.id.profile :
-                startActivity(new Intent(AdminActivity.this, AdminProfileActivity.class));
+                Intent intent = new Intent(AdminActivity.this, AdminProfileActivity.class);
+                intent.putExtra("CLASS_TYPE", admin);
+                startActivity(intent);
                 break;
             case R.id.teachers :
                 startActivity(new Intent(AdminActivity.this, TeachersListActivity.class));

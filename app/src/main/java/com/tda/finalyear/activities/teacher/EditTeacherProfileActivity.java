@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.tda.finalyear.R;
 
-public class EditTeacherActivityActivity extends AppCompatActivity {
+public class EditTeacherProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

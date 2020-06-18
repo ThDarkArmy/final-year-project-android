@@ -45,7 +45,7 @@ public class EditHolidayActivity extends AppCompatActivity {
         String holidayTitle = getIntent().getExtras().getString("HOLIDAY_TITLE");
         String holidayStartDate  = getIntent().getExtras().getString("HOLIDAY_START_DATE");
         System.out.println(holidayDescription+" "+holidayDuration+" "+holidayTitle);
-
+        bind();
 
         duration.setText(holidayDuration.toString());
         description.setText(holidayDescription);
