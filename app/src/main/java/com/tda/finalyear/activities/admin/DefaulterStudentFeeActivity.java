@@ -54,6 +54,8 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
+                }else{
+                    Toast.makeText(DefaulterStudentFeeActivity.this, "Unable to fetch data", Toast.LENGTH_SHORT).show();
                 }
             }
 
