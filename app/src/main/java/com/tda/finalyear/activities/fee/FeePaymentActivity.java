@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,7 @@ public class FeePaymentActivity extends AppCompatActivity {
 
     private Student student;
     private TextView name, tutionFee, examFee, admissionFee, totalFee;
-    private MaterialButton payButton;
+    private Button payButton;
     private FeeHistory feeHistory;
 
     @Override
