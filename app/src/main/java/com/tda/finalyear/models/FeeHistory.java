@@ -107,4 +107,17 @@ public class FeeHistory implements Serializable {
         this.admissionFee = admissionFee;
     }
 
+    @Override
+    public String toString() {
+        return "FeeHistory{" +
+                "isPaid=" + isPaid +
+                ", datePaid=" + datePaid +
+                ", id='" + id + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                ", tuitionFee=" + tuitionFee +
+                ", examFee=" + examFee +
+                ", admissionFee=" + admissionFee +
+                '}';
+    }
 }
