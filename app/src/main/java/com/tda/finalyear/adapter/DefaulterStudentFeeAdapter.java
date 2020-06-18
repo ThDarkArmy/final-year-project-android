@@ -23,6 +23,7 @@ public class DefaulterStudentFeeAdapter extends RecyclerView.Adapter<DefaulterSt
     Context context;
 
     public DefaulterStudentFeeAdapter(List<Student> listOfDefaulter, Context context) {
+        System.out.println("DefaulterStudentFeeAdapter.DefaulterStudentFeeAdapter Inside the adapter class");
         this.listOfDefaulter = listOfDefaulter;
         this.context = context;
     }

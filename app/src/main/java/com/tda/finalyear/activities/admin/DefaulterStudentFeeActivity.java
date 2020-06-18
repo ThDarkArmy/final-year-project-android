@@ -26,13 +26,13 @@ import retrofit2.Response;
 
 public class DefaulterStudentFeeActivity extends AppCompatActivity {
 
-    DefaulterStudentFeeAdapter defaulterStudentFeeAdapter;
+    private DefaulterStudentFeeAdapter defaulterStudentFeeAdapter;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_defaulter_student_fee);
-
+        recyclerView = findViewById(R.id.defaulterStudentRecyclerView);
         getDefaulterList();
 
 
@@ -47,8 +47,8 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
                     try {
                         JSONArray jsonArray = new JSONArray(response.body().string());
                         StudentList studentList = (StudentList) jsonArray.get(0);
+                        System.out.println("^!@#^!(@#^!@(&#^!@(#^!("+studentList);
                         defaulterStudentFeeAdapter = new DefaulterStudentFeeAdapter(studentList.getStudents(),DefaulterStudentFeeActivity.this);
-                        recyclerView = findViewById(R.id.defaulterStudentRecyclerView);
                         recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
                         recyclerView.setAdapter(defaulterStudentFeeAdapter);
                     } catch (IOException | JSONException e) {
