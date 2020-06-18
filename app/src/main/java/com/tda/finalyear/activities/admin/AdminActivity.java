@@ -108,6 +108,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminActivity.this,DefaulterStudentFeeActivity.class);
+                startActivity(intent);
             }
         });
     }
