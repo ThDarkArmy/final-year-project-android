@@ -50,6 +50,7 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         JSONArray jsonArray = jsonObject.getJSONArray("students");
+                        System.out.println("@#@%$^%&^&*(^^%$#%$#"+jsonArray.toString());
                         List<Student> student  = new ArrayList<>();
                         int length = jsonArray.length();
                         for(int i=0;i<length;i++){
