@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/buttonpay"
             android:text="Pay"
-            android:layout_marginTop="10dpdp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:padding="20dp"
             android:textStyle="bold"

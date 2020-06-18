@@ -15,12 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-<<<<<<< Updated upstream
         <activity android:name=".activities.fee.FeePaymentActivity"></activity>
-=======
         <activity android:name=".activities.teacher.TeacherDetailsActivity"></activity>
         <activity android:name=".activities.student.StudentDetailsActivity" />
->>>>>>> Stashed changes
         <activity android:name=".activities.admin.EditAdminProfileActivity" />
         <activity android:name=".activities.solution.SolutionActivity" />
         <activity android:name=".activities.solution.SolutionListActivity" />
