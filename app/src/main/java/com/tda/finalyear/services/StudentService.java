@@ -30,10 +30,10 @@ public interface StudentService {
     @PUT("/student/{id}")
     Call<ResponseBody> updateStudent(@Path("id") String id, @Body Student student);
 
-    @POST("/feepayment")
+    @POST("/student/feepayment")
     Call<ResponseBody> feePayment (Map<String, String> id);
 
-    @GET("/defaulter")
+    @GET("/student/getDefaulter")
     Call<ResponseBody> getDefaulterList ();
 
 }
