@@ -27,6 +27,7 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.shockwave.pdfium.PdfDocument;
 import com.tda.finalyear.R;
 import com.tda.finalyear.api.RetrofitClient;
+import com.tda.finalyear.models.Teacher;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +57,7 @@ public class EditAssignmentActivity extends AppCompatActivity implements Adapter
     private Button choseFile, uploadFile;
     private String std;
     boolean classSelected = false;
+    private Teacher teacher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,9 @@ public class EditAssignmentActivity extends AppCompatActivity implements Adapter
         String assignmentId = Objects.requireNonNull(getIntent().getStringExtra("ASSIGNMENT_ID"));
         String ETitle = getIntent().getStringExtra("ASSIGNMENT_TITLE");
         String EStd = getIntent().getStringExtra("ASSIGNMENT_STD");
+        String EFilePath = getIntent().getStringExtra("ASSIGNMENT_FILE_PATH");
+        teacher = (Teacher)Objects.requireNonNull((getIntent().getSerializableExtra("CLASS_TYPE")));
+
         Uri myUri=getIntent().getData();
         title.setText(ETitle);
 
@@ -74,6 +79,7 @@ public class EditAssignmentActivity extends AppCompatActivity implements Adapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        displayFromFile(new File(EFilePath));
         choseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -220,7 +226,9 @@ public class EditAssignmentActivity extends AppCompatActivity implements Adapter
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful()){
-                        startActivity(new Intent(EditAssignmentActivity.this,AssignmentListActivity.class));
+                        Intent intent = new Intent(EditAssignmentActivity.this,AssignmentListActivity.class);
+                        intent.putExtra("CLASS_TYPE", teacher);
+                        startActivity(intent);
                         try {
                             Log.i("assignment", response.body().string());
                         } catch (IOException e) {

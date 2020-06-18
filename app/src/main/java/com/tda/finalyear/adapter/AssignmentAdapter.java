@@ -43,11 +43,11 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
     private AssignmentList assignments;
     ConstraintLayout mainLayout;
     File file;
-    String classType;
+    Teacher classType;
     Student student;
 
 
-    public AssignmentAdapter(Context context, AssignmentList assignments, String classType) {
+    public AssignmentAdapter(Context context, AssignmentList assignments, Teacher classType) {
         this.context = context;
         this.assignments = assignments;
         this.classType = classType;
@@ -72,12 +72,50 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditAssignmentActivity.class);
-                intent.putExtra("ASSIGNMENT_ID", assignments.getAssignments().get(position).getId());
-                intent.putExtra("ASSIGNMENT_STD", assignments.getAssignments().get(position).getStd());
-                intent.putExtra("ASSIGNMENT_TITLE", assignments.getAssignments().get(position).getTitle());
-                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+assignments.getAssignments().get(position).getAssignmentFile()));
-                context.startActivity(intent);
+
+                RetrofitClient.getInstance().getAssignmentService().downloadFileWithDynamicUrlAsync(RetrofitClient.BASE_URL + "/" + assignments.getAssignments().get(position).getAssignmentFile()).enqueue(new Callback<ResponseBody>() {
+                    @SuppressLint("StaticFieldLeak")
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            new AsyncTask<Void, Void, Void>() {
+                                @Override
+                                protected Void doInBackground(Void... voids) {
+                                    boolean writtenToDisk = writeResponseBodyToDisk(response.body(), assignments.getAssignments().get(position).getTitle());
+                                    Log.i("fileDownload", "file download was a success? " + writtenToDisk);
+                                    Log.i("fileIn", file.getPath());
+                                    Intent intent = new Intent(context, EditAssignmentActivity.class);
+                                    intent.putExtra("ASSIGNMENT_ID", assignments.getAssignments().get(position).getId());
+                                    intent.putExtra("ASSIGNMENT_STD", assignments.getAssignments().get(position).getStd());
+                                    intent.putExtra("ASSIGNMENT_TITLE", assignments.getAssignments().get(position).getTitle());
+                                    intent.putExtra("ASSIGNMENT_FILE_PATH", file.getPath());
+                                    intent.putExtra("CLASS_TYPE", classType);
+                                    intent.setData(Uri.parse(RetrofitClient.BASE_URL + "/" + assignments.getAssignments().get(position).getAssignmentFile()));
+                                    intent.putExtra("STUDENT", student);
+                                    context.startActivity(intent);
+                                    return null;
+                                }
+                            }.execute();
+                        } else {
+                            try {
+                                Log.i("else", response.errorBody().string());
+                            } catch (IOException e) {
+                                Log.i("else", e.getMessage());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+//                Intent intent = new Intent(context, EditAssignmentActivity.class);
+//                intent.putExtra("ASSIGNMENT_ID", assignments.getAssignments().get(position).getId());
+//                intent.putExtra("ASSIGNMENT_STD", assignments.getAssignments().get(position).getStd());
+//                intent.putExtra("ASSIGNMENT_TITLE", assignments.getAssignments().get(position).getTitle());
+//                intent.setData(Uri.parse(RetrofitClient.BASE_URL+"/"+assignments.getAssignments().get(position).getAssignmentFile()));
+//                context.startActivity(intent);
             }
         });
 

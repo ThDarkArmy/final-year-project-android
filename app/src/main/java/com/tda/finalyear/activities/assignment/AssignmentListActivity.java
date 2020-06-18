@@ -16,6 +16,7 @@ import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.AssignmentList;
 import com.tda.finalyear.models.ErrorPojo;
 import com.tda.finalyear.models.Student;
+import com.tda.finalyear.models.Teacher;
 
 import java.util.Objects;
 
@@ -27,13 +28,13 @@ import retrofit2.Response;
 public class AssignmentListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    String classType;
+    Teacher classType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_list);
         recyclerView = findViewById(R.id.assignment_recycler);
-        classType = Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE").getClass().getName());
+        classType = (Teacher)Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         getAssignmentList();
     }
 
@@ -45,7 +46,7 @@ public class AssignmentListActivity extends AppCompatActivity {
                     try{
                         AssignmentList assignmentList = new GsonBuilder().create().fromJson(response.body().string(), AssignmentList.class);
                         AssignmentAdapter assignmentAdapter;
-                        if(classType.equals("com.tda.finalyear.models.Teacher")){
+                        if(classType.getClass().getName().equals("com.tda.finalyear.models.Teacher")){
                             assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, classType);
                         }else{
                             assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, (Student) getIntent().getSerializableExtra("CLASS_TYPE"));
