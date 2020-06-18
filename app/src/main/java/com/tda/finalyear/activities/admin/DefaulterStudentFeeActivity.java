@@ -35,9 +35,7 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
 
         getDefaulterList();
 
-        recyclerView = findViewById(R.id.defaulterStudentRecyclerView);
-        recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
-        recyclerView.setAdapter(defaulterStudentFeeAdapter);
+
     }
 
     private void getDefaulterList() {
@@ -50,6 +48,9 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
                         JSONArray jsonArray = new JSONArray(response.body().string());
                         StudentList studentList = (StudentList) jsonArray.get(0);
                         defaulterStudentFeeAdapter = new DefaulterStudentFeeAdapter(studentList.getStudents(),DefaulterStudentFeeActivity.this);
+                        recyclerView = findViewById(R.id.defaulterStudentRecyclerView);
+                        recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
+                        recyclerView.setAdapter(defaulterStudentFeeAdapter);
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
