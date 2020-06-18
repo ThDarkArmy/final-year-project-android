@@ -34,7 +34,7 @@ public interface StudentService {
     Call<ResponseBody> updateStudent(@Path("id") String id, @Body Student student);
 
     @POST("/feepayment")
-    Call<ResponseBody> feePayment (Map<String, String> studentId);
+    Call<ResponseBody> feePayment (Map<String, String> id);
 
     @GET("/student/defaulter")
     Call<ResponseBody> getDefaulterList ();
