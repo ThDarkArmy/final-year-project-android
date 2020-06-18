@@ -1,9 +1,6 @@
 package com.tda.finalyear.services;
 
 import com.tda.finalyear.models.Student;
-import com.tda.finalyear.models.Teacher;
-
-import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
