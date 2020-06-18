@@ -36,7 +36,7 @@ public interface StudentService {
     @POST("/feepayment")
     Call<ResponseBody> feePayment (Map<String, String> id);
 
-    @GET("/student/defaulter")
+    @GET("/defaulter/students")
     Call<ResponseBody> getDefaulterList ();
 
 }
