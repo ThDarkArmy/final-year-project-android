@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/attendance_card">
+    android:id="@+id/student_card">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,15 +37,6 @@
                 android:id="@+id/name"
                 android:textSize="25dp">
             </TextView>
-            <CheckBox
-                android:id="@+id/check_box"
-                android:layout_weight="0.01"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text=""
-                android:scaleX="2"
-                android:scaleY="2"
-                android:layout_centerHorizontal="true" />
 
         </LinearLayout>
 
