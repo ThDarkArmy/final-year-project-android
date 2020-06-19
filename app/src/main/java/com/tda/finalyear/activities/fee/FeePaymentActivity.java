@@ -10,12 +10,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.GsonBuilder;
 import com.tda.finalyear.R;
 import com.tda.finalyear.activities.student.StudentActivity;
 import com.tda.finalyear.api.RetrofitClient;
 import com.tda.finalyear.models.FeeHistory;
 import com.tda.finalyear.models.Student;
+import com.tda.finalyear.models.StudentList;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -40,14 +43,30 @@ public class FeePaymentActivity extends AppCompatActivity {
         student = (Student) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         bind();
 
+        RetrofitClient.getInstance().getStudentService().getStudent().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    try {
+                        student = new GsonBuilder().create().fromJson(response.body().string(), Student.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
         name.setText(student.getName());
         feeHistory = student.getFeeHistory().get(student.getFeeHistory().size() - 1);
-        System.out.println("!@#!@#!#!#+"+feeHistory.toString());
         if(feeHistory.getIsPaid()){
-            examFee.setText('0');
-            tutionFee.setText('0');
-            admissionFee.setText('0');
-            totalFee.setText('0');
+            examFee.setText("0");
+            tutionFee.setText("0");
+            admissionFee.setText("0");
+            totalFee.setText("0");
         }else{
             examFee.setText(feeHistory.getExamFee().toString());
             tutionFee.setText(feeHistory.getTuitionFee().toString());
