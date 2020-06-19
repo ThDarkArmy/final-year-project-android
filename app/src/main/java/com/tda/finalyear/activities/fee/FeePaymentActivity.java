@@ -42,24 +42,6 @@ public class FeePaymentActivity extends AppCompatActivity {
 
         student = (Student) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         bind();
-
-        RetrofitClient.getInstance().getStudentService().getStudent().enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()){
-                    try {
-                        student = new GsonBuilder().create().fromJson(response.body().string(), Student.class);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
         name.setText(student.getName());
         feeHistory = student.getFeeHistory().get(student.getFeeHistory().size() - 1);
         if(feeHistory.getIsPaid()){
@@ -99,6 +81,10 @@ public class FeePaymentActivity extends AppCompatActivity {
                     Toast.makeText(FeePaymentActivity.this, "Payment Successful", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(FeePaymentActivity.this, StudentActivity.class);
                     intent.putExtra("CLASS_TYPE", student);
+                    examFee.setText("0");
+                    tutionFee.setText("0");
+                    admissionFee.setText("0");
+                    totalFee.setText("0");
                     startActivity(intent);
                 }
             }
