@@ -91,7 +91,7 @@ public class TeacherActivity extends AppCompatActivity implements NavigationView
         facility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeacherActivity.this, FacilityList.class);
+                Intent intent = new Intent(TeacherActivity.this, FacilityListActivity.class);
                 intent.putExtra("CLASS_TYPE",teacher);
                 startActivity(intent);            }
         });

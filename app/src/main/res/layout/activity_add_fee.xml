@@ -30,35 +30,65 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="15pt">
         </TextView>
+        <TextView
+            android:id="@+id/studentname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:text="CLASS"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/std"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Class"
-            android:layout_marginTop="20dp"
             android:textSize="25dp"
-            android:paddingTop="30dp"
             android:inputType="text"
             >
         </EditText>
+        <TextView
+            android:id="@+id/textadmission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:text="Admission Fee"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
         <EditText
             android:id="@+id/admission_fee"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Admission Fee"
             android:textSize="25dp"
-            android:paddingTop="20dp"
             android:inputType="date"
             >
         </EditText>
+
+        <TextView
+            android:id="@+id/texttutuion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:text="Tution Fee"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
         <EditText
             android:id="@+id/tuition_fee"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Tuition Fee"
             android:textSize="25dp"
-            android:paddingTop="20dp"
             android:inputType="text"
             >
         </EditText>

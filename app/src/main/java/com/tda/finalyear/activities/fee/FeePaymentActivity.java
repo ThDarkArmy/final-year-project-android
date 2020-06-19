@@ -86,6 +86,7 @@ public class FeePaymentActivity extends AppCompatActivity {
                     admissionFee.setText("0");
                     totalFee.setText("0");
                     startActivity(intent);
+                    finish();
                 }
             }
 

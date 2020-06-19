@@ -43,6 +43,7 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
     }
 
     private void getDefaulterList() {
+        System.out.println("Helllo aby");
         Call<ResponseBody> call = RetrofitClient.getInstance().getStudentService().getDefaulterList();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
