@@ -18,6 +18,9 @@
         <activity android:name=".activities.fee.FeePaymentActivity"></activity>
         <activity android:name=".activities.teacher.TeacherDetailsActivity"></activity>
         <activity android:name=".activities.student.StudentDetailsActivity" />
+
+
+        <activity android:name=".activities.admin.DefaulterStudentFeeActivity"></activity>
         <activity android:name=".activities.admin.EditAdminProfileActivity" />
         <activity android:name=".activities.solution.SolutionActivity" />
         <activity android:name=".activities.solution.SolutionListActivity" />

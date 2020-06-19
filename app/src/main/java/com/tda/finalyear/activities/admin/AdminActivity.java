@@ -33,7 +33,7 @@ import com.tda.finalyear.models.Admin;
 import java.util.Objects;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    RelativeLayout addHoliday, addEvent, addNotice, addFacility, addFee, addExam, adminProfile;
+    RelativeLayout addHoliday, addEvent, addNotice, addFacility, addFee, addExam, adminProfile, defaulter;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -47,10 +47,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_admin);
 
         bind();
-        admin = (Admin)Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
+        admin = (Admin) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -104,19 +104,26 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 startActivity(intent);
             }
         });
+        defaulter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this,DefaulterStudentFeeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
             //drawerLayout.openDrawer(GravityCompat.START);
         }
     }
 
-    public void bind(){
+    public void bind() {
         addHoliday = findViewById(R.id.addholiday);
         addEvent = findViewById(R.id.addevent);
         addExam = findViewById(R.id.addexam);
@@ -127,33 +134,34 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         addFacility = findViewById(R.id.addfacility);
+        defaulter = findViewById(R.id.defaulter);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
 
-            case R.id.nav_home :
+            case R.id.nav_home:
                 startActivity(new Intent(AdminActivity.this, AdminActivity.class));
                 break;
-            case R.id.profile :
+            case R.id.profile:
                 Intent intent = new Intent(AdminActivity.this, AdminProfileActivity.class);
                 intent.putExtra("CLASS_TYPE", admin);
                 startActivity(intent);
                 break;
-            case R.id.teachers :
+            case R.id.teachers:
                 startActivity(new Intent(AdminActivity.this, TeachersListActivity.class));
                 break;
-            case R.id.students :
+            case R.id.students:
                 startActivity(new Intent(AdminActivity.this, StudentsListActivity.class));
                 break;
-            case R.id.about :
+            case R.id.about:
                 startActivity(new Intent(AdminActivity.this, AboutSchoolActivity.class));
                 break;
-            case R.id.settings :
+            case R.id.settings:
                 startActivity(new Intent(AdminActivity.this, AdminSettingsActivity.class));
                 break;
-            case R.id.logout :
+            case R.id.logout:
                 startActivity(new Intent(AdminActivity.this, AdminLoginActivity.class));
                 break;
         }

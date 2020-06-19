@@ -26,6 +26,7 @@ import com.tda.finalyear.activities.event.EventListActivity;
 import com.tda.finalyear.activities.exam.ExamListActivity;
 import com.tda.finalyear.activities.facility.FacilityListActivity;
 import com.tda.finalyear.activities.fee.FeeListActivity;
+import com.tda.finalyear.activities.fee.FeePaymentActivity;
 import com.tda.finalyear.activities.holiday.HolidayListActivity;
 import com.tda.finalyear.activities.notes.NotesActivity;
 import com.tda.finalyear.activities.notes.NotesListActivity;
@@ -44,7 +45,7 @@ import java.util.Objects;
 
 public class StudentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
-    RelativeLayout holiday, event, notice, facility, exam, assignment, note, fees, studentProfile;
+    RelativeLayout holiday, event, notice, facility, exam, assignment, note, fees, studentProfile,feePayment;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -150,6 +151,15 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
                 startActivity(intent);
             }
         });
+
+        feePayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StudentActivity.this, FeePaymentActivity.class);
+                intent.putExtra("CLASS_TYPE",student);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -175,6 +185,7 @@ public class StudentActivity extends AppCompatActivity implements NavigationView
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        feePayment = findViewById(R.id.feePayment);
     }
 
     @Override

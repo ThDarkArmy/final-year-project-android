@@ -29,12 +29,18 @@ public class AssignmentListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Teacher classType;
+    Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_list);
         recyclerView = findViewById(R.id.assignment_recycler);
-        classType = (Teacher)Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
+        //Log.i( "studentObject",Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE").getClass().getName()));
+        if(Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE").getClass().getName().equals("com.tda.finalyear.models.Teacher"))) {
+            classType = (Teacher) Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
+        }else{
+            student  = (Student)Objects.requireNonNull(getIntent().getSerializableExtra("CLASS_TYPE"));
+        }
         getAssignmentList();
     }
 
@@ -46,10 +52,10 @@ public class AssignmentListActivity extends AppCompatActivity {
                     try{
                         AssignmentList assignmentList = new GsonBuilder().create().fromJson(response.body().string(), AssignmentList.class);
                         AssignmentAdapter assignmentAdapter;
-                        if(classType.getClass().getName().equals("com.tda.finalyear.models.Teacher")){
+                        if(classType!=null){
                             assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, classType);
                         }else{
-                            assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, (Student) getIntent().getSerializableExtra("CLASS_TYPE"));
+                            assignmentAdapter = new AssignmentAdapter(AssignmentListActivity.this, assignmentList, student);
                         }
 
                         recyclerView.setLayoutManager(new LinearLayoutManager(AssignmentListActivity.this));

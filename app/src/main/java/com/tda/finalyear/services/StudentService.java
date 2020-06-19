@@ -1,7 +1,7 @@
 package com.tda.finalyear.services;
 
 import com.tda.finalyear.models.Student;
-import com.tda.finalyear.models.Teacher;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -29,4 +29,11 @@ public interface StudentService {
 
     @PUT("/student/{id}")
     Call<ResponseBody> updateStudent(@Path("id") String id, @Body Student student);
+
+    @POST("/student/feepayment")
+    Call<ResponseBody> feePayment (@Body Map<String, String> id);
+
+    @GET("/student/getDefaulter")
+    Call<ResponseBody> getDefaulterList ();
+
 }
