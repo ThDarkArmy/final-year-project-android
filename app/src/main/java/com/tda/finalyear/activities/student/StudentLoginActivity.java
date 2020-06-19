@@ -36,8 +36,8 @@ public class StudentLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_student);
 
         bind();
-        email.setText("swabhiman@gmail.com");
-        password.setText("qwerty123");
+        email.setText("rajputanjali442@gmail.com");
+        password.setText("password");
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

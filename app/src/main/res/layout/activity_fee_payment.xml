@@ -165,19 +165,13 @@
             android:background="#5c5d5e" />
 
         <Button
-            android:id="@+id/buttonpay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:id="@+id/buttonpay"
             android:text="Pay"
             android:layout_marginTop="10dp"
-=======
->>>>>>> ddd9c41aefd9f77e3e95c5952b8b4fe800c714dd
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:padding="20dp"
-            android:text="Pay"
             android:textStyle="bold"/>
 
     </LinearLayout>
