@@ -57,6 +57,7 @@ public class FeePaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Map<String, String> id = new HashMap<>();
                 id.put("id", student.getId());
+                System.out.println(id);
                 payment(id);
             }
         });

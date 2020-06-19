@@ -52,13 +52,6 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     try {
                         StudentList studentList = new GsonBuilder().create().fromJson(response.body().string(), StudentList.class);
-//                        JSONObject jsonObject = new JSONObject(response.body().string());
-//                        JSONArray jsonArray = jsonObject.getJSONArray("students");
-////                        System.out.println("@#@%$^%&^&*(^^%$#%$#"+jsonArray.toString());
-//                        List<Student> student  = new ArrayList<>();
-//                        ObjectMapper mapper = new ObjectMapper();
-//                        StudentList studentList = mapper.convertValue(jsonArray,StudentList.class);
-//                        System.out.println("$%$^%$^$^$^%$%"+studentList);
                         defaulterStudentFeeAdapter = new DefaulterStudentFeeAdapter(studentList.getStudents(),DefaulterStudentFeeActivity.this);
                         recyclerView.setLayoutManager( new LinearLayoutManager(DefaulterStudentFeeActivity.this));
                         recyclerView.setAdapter(defaulterStudentFeeAdapter);
