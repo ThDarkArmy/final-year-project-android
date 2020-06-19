@@ -43,14 +43,22 @@ public class FeePaymentActivity extends AppCompatActivity {
         name.setText(student.getName());
         feeHistory = student.getFeeHistory().get(student.getFeeHistory().size() - 1);
         System.out.println("!@#!@#!#!#+"+feeHistory.toString());
-        examFee.setText(feeHistory.getExamFee().toString());
-        tutionFee.setText(feeHistory.getTuitionFee().toString());
-        admissionFee.setText(feeHistory.getAdmissionFee().toString());
-        Integer tution_fee = Integer.parseInt(tutionFee.getText().toString());
-        Integer exam_fee = Integer.parseInt(examFee.getText().toString());
-        Integer admission_fee = Integer.parseInt(admissionFee.getText().toString());
-        Integer total_fee = tution_fee + exam_fee + admission_fee;
-        totalFee.setText(total_fee.toString());
+        if(feeHistory.getIsPaid()){
+            examFee.setText('0');
+            tutionFee.setText('0');
+            admissionFee.setText('0');
+            totalFee.setText('0');
+        }else{
+            examFee.setText(feeHistory.getExamFee().toString());
+            tutionFee.setText(feeHistory.getTuitionFee().toString());
+            admissionFee.setText(feeHistory.getAdmissionFee().toString());
+            Integer tution_fee = Integer.parseInt(tutionFee.getText().toString());
+            Integer exam_fee = Integer.parseInt(examFee.getText().toString());
+            Integer admission_fee = Integer.parseInt(admissionFee.getText().toString());
+            Integer total_fee = tution_fee + exam_fee + admission_fee;
+            totalFee.setText(total_fee.toString());
+        }
+
 
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override

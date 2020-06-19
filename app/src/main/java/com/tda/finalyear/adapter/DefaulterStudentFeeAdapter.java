@@ -31,27 +31,32 @@ public class DefaulterStudentFeeAdapter extends RecyclerView.Adapter<DefaulterSt
     @NonNull
     @Override
     public DefaulterViewHodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new DefaulterViewHodler(LayoutInflater.from(context).inflate(R.layout.defaulter_list_layout,parent,false));
+        return new DefaulterViewHodler(LayoutInflater.from(context).inflate(R.layout.defaulter_list_layout, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull DefaulterViewHodler holder, int position) {
-        holder.defaulterName.setText(listOfDefaulter.get(position).getName());
         List<FeeHistory> feeHistoryList = listOfDefaulter.get(position).getFeeHistory();
-        FeeHistory feeHistory = feeHistoryList.get(feeHistoryList.size()-1);
-        Integer examFee =  feeHistory.getExamFee();
-        Integer admissionFee = feeHistory.getAdmissionFee();
-        Integer tutionFee = feeHistory.getTuitionFee();
-        Integer total = examFee + admissionFee + tutionFee;
-        holder.dueAmount.setText(total.toString());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(context, FeePaymentActivity.class);
-                i.putExtra("CLASS_TYPE",listOfDefaulter.get(0));
-                context.startActivity(i);
-            }
-        });
+        FeeHistory feeHistory = feeHistoryList.get(feeHistoryList.size() - 1);
+        if (!feeHistory.getIsPaid()) {
+            holder.defaulterName.setText(listOfDefaulter.get(position).getName());
+            Integer examFee = feeHistory.getExamFee();
+            Integer admissionFee = feeHistory.getAdmissionFee();
+            Integer tutionFee = feeHistory.getTuitionFee();
+            Integer total = examFee + admissionFee + tutionFee;
+
+            holder.dueAmount.setText(total.toString());
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, FeePaymentActivity.class);
+                    i.putExtra("CLASS_TYPE", listOfDefaulter.get(0));
+                    context.startActivity(i);
+                }
+            });
+        }
+
+
     }
 
     @Override
@@ -59,9 +64,10 @@ public class DefaulterStudentFeeAdapter extends RecyclerView.Adapter<DefaulterSt
         return listOfDefaulter.size();
     }
 
-    public class DefaulterViewHodler extends RecyclerView.ViewHolder{
+    public class DefaulterViewHodler extends RecyclerView.ViewHolder {
         private TextView defaulterName, dueAmount;
         private CardView cardView;
+
         public DefaulterViewHodler(@NonNull View itemView) {
             super(itemView);
             defaulterName = (itemView).findViewById(R.id.defaulterName);

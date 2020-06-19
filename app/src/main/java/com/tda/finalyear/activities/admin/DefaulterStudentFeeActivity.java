@@ -40,8 +40,6 @@ public class DefaulterStudentFeeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_defaulter_student_fee);
         recyclerView = findViewById(R.id.defaulterStudentRecyclerView);
         getDefaulterList();
-
-
     }
 
     private void getDefaulterList() {
